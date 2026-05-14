@@ -198,6 +198,26 @@ p, .card p, .summary-list li, .footer p, .hero p {
     margin-top: 3rem;
 }
 
+.hero-stats .stat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    line-height: 1.2;
+    margin-bottom: 0.2rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
 .stat-number {
     font-size: 2rem;
     font-weight: 700;
