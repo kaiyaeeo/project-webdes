@@ -70,7 +70,6 @@ body {
 #con-topik{
     display:flex;
     align-items: stretch;
-    align-content: center;
     justify-content: center;
     min-height: 500px;
     flex-wrap: wrap;
