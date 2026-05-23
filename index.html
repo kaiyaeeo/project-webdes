@@ -1,87 +1,28 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlgoNotes | Algoritma & Struktur Data</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header class="header">
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-code"></i>
-                <span>Algo<span class="highlight">Notes</span></span>
-            </div>
-            <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#beranda" class="nav-link active">Beranda</a></li>
-                <li><a href="#algoritma" class="nav-link">Algoritma</a></li>
-                <li><a href="#struktur-data" class="nav-link">Struktur Data</a></li>
-                <li><a href="#ringkasan" class="nav-link">Ringkasan</a></li>
-            </ul>
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="con-judul">
+            <div id="judul">
+                <h1>Pemrograman Dasar</h1>
+                <p>Pemorgraman dasar adalah .....</p>
+            </div>    
         </div>
-    </header>
-
-    <main>
-        <section id="beranda" class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <span class="badge">📘 Catatan Kuliah</span>
-                    <h1>Algoritma Pemrograman <br>& <span class="accent">Struktur Data</span></h1>
-                    <p>Ringkasan materi, contoh kode, dan konsep fundamental yang disusun rapi.</p>
-                    <div class="hero-buttons">
-                        <a href="#algoritma" class="btn btn-primary">Mulai Belajar <i class="fas fa-arrow-right"></i></a>
-                        <a href="#ringkasan" class="btn btn-outline">Lihat Ringkasan</a>
-                    </div>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat"><span class="stat-number" id="totalTopics">0</span><span class="stat-label">Topik</span></div>
-                    <div class="stat"><span class="stat-number" id="totalExamples">0</span><span class="stat-label">Contoh Kode</span></div>
-                </div>
+        <div id="con-topik">
+            <div class="topik">
+                <h3>variable</h3>
+                <p>Variabel dalam pemrograman adalah sebuah nama atau identifikasi yang diberikan untuk menyimpan suatu nilai data dalam memori komputer. Nilai ini dapat dapat diubah atau dimanipulasi selama eksekusi program.</p>
             </div>
-        </section>
-
-        <section id="algoritma" class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h2><i class="fas fa-brain"></i> Dasar-dasar Algoritma</h2>
-                    <p>Langkah logis, efisien, dan terstruktur untuk menyelesaikan masalah.</p>
-                </div>
-                <div class="cards-grid" id="algoritmaGrid"></div>
+            <div class="topik">
+                <h3>array</h3>
+                <p>Array adalah struktur data yang digunakan untuk menyimpan beberapa nilai dalam satu variabel. Setiap nilai dalam array dapat diakses menggunakan indeks atau posisi tertentu.</p>
             </div>
-        </section>
-
-        <section id="struktur-data" class="section bg-soft">
-            <div class="container">
-                <div class="section-header">
-                    <h2><i class="fas fa-database"></i> Struktur Data</h2>
-                    <p>Cara menyimpan dan mengorganisasi data agar efisien diakses dan dimodifikasi.</p>
-                </div>
-                <div class="cards-grid" id="strukturDataGrid"></div>
+            <div class="topik">
+                <h3>fungsi</h3>
+                <p>Fungsi adalah blok kode yang dirancang untuk melakukan tugas tertentu. Fungsi dapat menerima input (parameter) dan menghasilkan output (nilai kembali) setelah menjalankan serangkaian instruksi.</p>
             </div>
-        </section>
-
-        <section id="ringkasan" class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h2><i class="fas fa-list-check"></i> Ringkasan & Cheatsheet</h2>
-                    <p>Poin penting, kompleksitas waktu, dan perbandingan struktur data.</p>
-                </div>
-                <div class="summary-wrapper" id="summaryContent"></div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 AlgoNotes | Catatan kuliah - Algoritma & Struktur Data</p>
-            <p><i class="fas fa-code"></i> Hasil Tugas Web Design by Group 10</p>
         </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
+    </body>
 </html>
