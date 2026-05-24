@@ -1,42 +1,424 @@
 <!doctype html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div id="con-judul">
-            <div id="judul">
-                <h1>Pemrograman Dasar</h1>
-                <p>Pemrograman dasar adalah fondasi utama untuk memahami bagaimana komputer dapat menyelesaikan masalah secara otomatis.</p>
-            </div>    
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <!-- Mengatur tampilan agar responsif di perangkat mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemrograman Dasar</title>
+    <!-- Menghubungkan file CSS eksternal -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- =============================================
+         BAGIAN HERO / JUDUL UTAMA
+         Ditampilkan paling atas sebagai pengantar
+    ============================================= -->
+    <header id="hero">
+        <div class="container">
+            <!-- Label kecil di atas judul -->
+            <span class="label-atas">Materi Belajar</span>
+            <!-- Judul utama halaman -->
+            <h1>Pemrograman Dasar</h1>
+            <!-- Deskripsi singkat tentang topik -->
+            <p class="hero-desc">
+                Pemrograman dasar adalah fondasi utama untuk memahami bagaimana komputer
+                menyelesaikan masalah secara otomatis. Dengan memahami konsep-konsep dasar ini,
+                kamu siap melangkah lebih jauh ke dunia teknologi dan pengembangan perangkat lunak.
+            </p>
         </div>
-        <div id="con-topik">
-            <div class="topik">
-                <h3>variable</h3>
-                <p>Variabel dalam pemrograman adalah sebuah nama atau identifikasi yang diberikan untuk menyimpan suatu nilai data dalam memori komputer. Nilai ini dapat dapat diubah atau dimanipulasi selama eksekusi program.</p>
-            </div>
-            <div class="topik">
-                <h3>array</h3>
-                <p>Array adalah struktur data yang digunakan untuk menyimpan nilai dalam satu variabel. Setiap nilai dalam array dapat diakses menggunakan indeks atau posisi tertentu.</p>
-            </div>
-            <div class="topik">
-                <h3>fungsi</h3>
-                <p>Fungsi adalah blok kode yang dirancang untuk melakukan tugas tertentu. Fungsi dapat menerima input (parameter) dan menghasilkan output (nilai kembali) setelah menjalankan serangkaian instruksi.</p>
-            </div>
-            <div class="topik">
-                <h3>tipe data</h3>
-                <p>Tipe data mendefinisikan jenis nilai yang bisa disimpan oleh variabel. Contoh umumnya meliputi String (teks), Integer (angka bulat), Float (desimal), dan Boolean (true/false)</p>
-            </div>
-            <div class="topik">
-                <h3>percabangan</h3>
-                <p>Percabangan (If-Else) memungkinkan program mengambil keputusan berdasarkan kondisi tertentu. Jika kondisi terpenuhi, maka perintah A akan diajalnkan; jika tidak, jalankan perintah B.</p>
-            </div>
-            <div class="topik">
-                <h3>perulangan</h3>
-                <p>Perulangan (Loop) digunakan untuk mengeksekusi blok kode yang sama berkali-kali secara otomatis selama kondisi yang ditentukan masih terpenuhi (seperti For atau While)</p>
+    </header>
+
+    <!-- =============================================
+         BAGIAN PENGANTAR ARTIKEL
+         Penjelasan panjang tentang pemrograman dasar
+    ============================================= -->
+    <section id="pengantar">
+        <div class="container">
+            <h2>Apa Itu Pemrograman Dasar?</h2>
+            <p>
+                Pemrograman adalah proses memberikan instruksi kepada komputer agar dapat menjalankan
+                tugas tertentu. Instruksi ini ditulis menggunakan <strong>bahasa pemrograman</strong>
+                yang kemudian diterjemahkan oleh komputer menjadi tindakan nyata.
+            </p>
+            <p>
+                Pemrograman dasar mencakup konsep-konsep inti yang berlaku di hampir semua bahasa
+                pemrograman, seperti cara menyimpan data, membuat keputusan, mengulang proses, dan
+                mengorganisasi kode. Menguasai konsep ini berarti kamu bisa belajar bahasa pemrograman
+                apa pun dengan lebih mudah.
+            </p>
+
+            <!-- Kotak ringkasan manfaat -->
+            <div class="info-box">
+                <strong>Mengapa Pemrograman Dasar Penting?</strong>
+                <ul>
+                    <li>Menjadi fondasi untuk mempelajari bahasa pemrograman apa pun</li>
+                    <li>Melatih kemampuan berpikir logis dan sistematis</li>
+                    <li>Membuka peluang karier di bidang teknologi</li>
+                    <li>Membantu memahami cara kerja aplikasi dan sistem digital</li>
+                </ul>
             </div>
         </div>
-    </body>
+    </section>
+
+    <!-- =============================================
+         BAGIAN ELEMEN PENTING
+         Judul seksi untuk daftar elemen pemrograman
+    ============================================= -->
+    <section id="elemen-judul">
+        <div class="container">
+            <h2>Elemen Penting dalam Pemrograman Dasar</h2>
+            <p>Berikut adalah konsep-konsep utama yang harus kamu pahami sebagai pemula:</p>
+        </div>
+    </section>
+
+    <!-- =============================================
+         ELEMEN 1: VARIABEL & TIPE DATA
+         Digabung karena keduanya berkaitan erat
+    ============================================= -->
+    <section class="elemen" id="elemen-variabel">
+        <div class="container">
+            <!-- Nomor dan judul elemen -->
+            <div class="elemen-header">
+                <span class="nomor">01</span>
+                <h3>Variabel & Tipe Data</h3>
+            </div>
+
+            <!-- Penjelasan Variabel -->
+            <p>
+                <strong>Variabel</strong> adalah tempat penyimpanan data di dalam memori komputer.
+                Bayangkan variabel seperti kotak dengan label nama — kamu bisa menyimpan nilai
+                di dalamnya, lalu memanggilnya kembali kapan saja menggunakan nama labelnya.
+            </p>
+            <p>
+                <strong>Tipe data</strong> menentukan jenis nilai yang tersimpan dalam variabel.
+                Tipe data yang umum digunakan:
+            </p>
+            <!-- Tabel tipe data -->
+            <table class="tabel-info">
+                <tr><th>Tipe Data</th><th>Contoh Nilai</th><th>Keterangan</th></tr>
+                <tr><td>String</td><td>"Halo Dunia"</td><td>Teks atau kalimat</td></tr>
+                <tr><td>Integer</td><td>42</td><td>Angka bulat</td></tr>
+                <tr><td>Float</td><td>3.14</td><td>Angka desimal</td></tr>
+                <tr><td>Boolean</td><td>true / false</td><td>Nilai benar atau salah</td></tr>
+            </table>
+
+            <!-- Contoh Interaktif Variabel & Tipe Data -->
+            <div class="contoh-box">
+                <div class="contoh-title">
+                    <span class="badge badge-biru">Coba Langsung</span>
+                    <strong>Simpan & Deteksi Nilai Variabel</strong>
+                </div>
+                <!-- Input nama dan usia -->
+                <div class="input-group">
+                    <input type="text" id="var-nama" placeholder="Masukkan namamu..." class="input-field" />
+                    <input type="number" id="var-usia" placeholder="Masukkan usiamu..." class="input-field" />
+                    <button onclick="demoVariabel()" class="btn btn-biru">Jalankan ▶</button>
+                </div>
+                <!-- Tempat menampilkan hasil -->
+                <div class="output" id="output-variabel">Output akan muncul di sini...</div>
+            </div>
+
+            <!-- Contoh Interaktif Tipe Data -->
+            <div class="contoh-box">
+                <div class="contoh-title">
+                    <span class="badge badge-biru">Coba Langsung</span>
+                    <strong>Deteksi Tipe Data Otomatis</strong>
+                </div>
+                <!-- Input nilai sembarang -->
+                <div class="input-group">
+                    <input type="text" id="td-input" placeholder="Ketik nilai apa saja (contoh: 42, true, Halo)..." class="input-field" />
+                    <button onclick="demoTipeData()" class="btn btn-biru">Cek Tipe ▶</button>
+                </div>
+                <!-- Tempat menampilkan hasil -->
+                <div class="output" id="output-tipedata">Output akan muncul di sini...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         ELEMEN 2: ARRAY
+    ============================================= -->
+    <section class="elemen" id="elemen-array">
+        <div class="container">
+            <div class="elemen-header">
+                <span class="nomor">02</span>
+                <h3>Array</h3>
+            </div>
+            <p>
+                <strong>Array</strong> adalah struktur data yang menyimpan banyak nilai sekaligus
+                dalam satu variabel. Setiap nilai memiliki <em>indeks</em> (posisi) yang dimulai
+                dari angka 0. Array berguna ketika kamu perlu mengelola kumpulan data sejenis,
+                seperti daftar nama, daftar harga, atau daftar item.
+            </p>
+            <p>
+                Contoh: <code>buah = ["apel", "mangga", "jeruk"]</code> — di sini
+                <code>buah[0]</code> adalah "apel", <code>buah[1]</code> adalah "mangga", dan seterusnya.
+            </p>
+
+            <!-- Contoh Interaktif Array -->
+            <div class="contoh-box">
+                <div class="contoh-title">
+                    <span class="badge badge-hijau">Coba Langsung</span>
+                    <strong>Daftar Belanja (Array Dinamis)</strong>
+                </div>
+                <!-- Input item dan tombol tambah/hapus -->
+                <div class="input-group">
+                    <input type="text" id="array-item" placeholder="Tulis item belanja..." class="input-field" />
+                    <button onclick="tambahItem()" class="btn btn-hijau">Tambah +</button>
+                    <button onclick="hapusItem()" class="btn btn-outline">Hapus Terakhir</button>
+                </div>
+                <!-- Tempat menampilkan isi array -->
+                <div class="output" id="output-array">Daftar belanja masih kosong...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         ELEMEN 3: FUNGSI
+    ============================================= -->
+    <section class="elemen" id="elemen-fungsi">
+        <div class="container">
+            <div class="elemen-header">
+                <span class="nomor">03</span>
+                <h3>Fungsi</h3>
+            </div>
+            <p>
+                <strong>Fungsi</strong> adalah blok kode yang dikelompokkan untuk menjalankan
+                tugas tertentu. Daripada menulis kode yang sama berulang kali, kamu cukup
+                membuat satu fungsi dan memanggilnya kapan pun dibutuhkan.
+            </p>
+            <p>
+                Fungsi dapat menerima <strong>parameter</strong> (nilai input) dan menghasilkan
+                <strong>nilai kembalian</strong> (output). Contoh: fungsi <code>hitungLuas(panjang, lebar)</code>
+                menerima dua angka dan mengembalikan hasil perkaliannya.
+            </p>
+
+            <!-- Contoh Interaktif Fungsi -->
+            <div class="contoh-box">
+                <div class="contoh-title">
+                    <span class="badge badge-merah">Coba Langsung</span>
+                    <strong>Kalkulator Luas Persegi Panjang</strong>
+                </div>
+                <!-- Input panjang dan lebar -->
+                <div class="input-group">
+                    <input type="number" id="fn-panjang" placeholder="Panjang (cm)" class="input-field" />
+                    <input type="number" id="fn-lebar" placeholder="Lebar (cm)" class="input-field" />
+                    <button onclick="demoFungsi()" class="btn btn-merah">Hitung ▶</button>
+                </div>
+                <!-- Tempat menampilkan hasil -->
+                <div class="output" id="output-fungsi">Output akan muncul di sini...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         ELEMEN 4: PERCABANGAN
+    ============================================= -->
+    <section class="elemen" id="elemen-percabangan">
+        <div class="container">
+            <div class="elemen-header">
+                <span class="nomor">04</span>
+                <h3>Percabangan (If-Else)</h3>
+            </div>
+            <p>
+                <strong>Percabangan</strong> memungkinkan program mengambil keputusan berdasarkan
+                kondisi tertentu. Jika kondisi <em>terpenuhi</em>, jalankan perintah A;
+                jika <em>tidak terpenuhi</em>, jalankan perintah B.
+            </p>
+            <p>
+                Struktur percabangan menggunakan kata kunci <code>if</code>, <code>else if</code>,
+                dan <code>else</code>. Contoh: menentukan apakah nilai ujian lulus atau tidak,
+                menentukan diskon berdasarkan jumlah pembelian, dan sebagainya.
+            </p>
+
+            <!-- Contoh Interaktif Percabangan -->
+            <div class="contoh-box">
+                <div class="contoh-title">
+                    <span class="badge badge-kuning">Coba Langsung</span>
+                    <strong>Penentu Grade Nilai Ujian</strong>
+                </div>
+                <!-- Input nilai -->
+                <div class="input-group">
+                    <input type="number" id="pc-nilai" placeholder="Masukkan nilai ujian (0–100)" class="input-field" min="0" max="100" />
+                    <button onclick="demoPercabangan()" class="btn btn-kuning">Cek Grade ▶</button>
+                </div>
+                <!-- Tempat menampilkan hasil -->
+                <div class="output" id="output-percabangan">Output akan muncul di sini...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         ELEMEN 5: PERULANGAN
+    ============================================= -->
+    <section class="elemen" id="elemen-perulangan">
+        <div class="container">
+            <div class="elemen-header">
+                <span class="nomor">05</span>
+                <h3>Perulangan (Loop)</h3>
+            </div>
+            <p>
+                <strong>Perulangan</strong> digunakan untuk mengeksekusi blok kode yang sama
+                secara berulang selama kondisi tertentu masih terpenuhi. Tanpa perulangan,
+                kamu harus menulis kode yang sama ratusan kali secara manual.
+            </p>
+            <p>
+                Dua jenis perulangan yang paling umum: <code>for</code> (digunakan ketika
+                jumlah iterasi sudah diketahui) dan <code>while</code> (digunakan ketika
+                iterasi bergantung pada kondisi tertentu).
+            </p>
+
+            <!-- Contoh Interaktif Perulangan -->
+            <div class="contoh-box">
+                <div class="contoh-title">
+                    <span class="badge badge-ungu">Coba Langsung</span>
+                    <strong>Cetak Bintang dengan Loop</strong>
+                </div>
+                <!-- Input jumlah bintang -->
+                <div class="input-group">
+                    <input type="number" id="loop-n" placeholder="Jumlah bintang (1–20)" class="input-field" min="1" max="20" />
+                    <button onclick="demoPerulangan()" class="btn btn-ungu">Cetak ▶</button>
+                </div>
+                <!-- Tempat menampilkan hasil -->
+                <div class="output" id="output-perulangan">Output akan muncul di sini...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =============================================
+         BAGIAN BAHASA PEMROGRAMAN UNTUK PEMULA
+         Ditempatkan paling bawah sesuai permintaan
+    ============================================= -->
+    <section id="bahasa-pemrograman">
+        <div class="container">
+            <h2>Bahasa Pemrograman untuk Pemula</h2>
+            <p>
+                Setelah memahami konsep dasar, langkah berikutnya adalah memilih bahasa pemrograman.
+                Berikut adalah bahasa yang direkomendasikan untuk pemula beserta contoh program
+                <strong>"Hello, World!"</strong> — program sederhana pertama yang biasanya ditulis
+                saat belajar bahasa pemrograman baru.
+            </p>
+
+            <!-- Grid kartu bahasa pemrograman -->
+            <div class="bahasa-grid">
+
+                <!-- Kartu Python -->
+                <div class="bahasa-card">
+                    <div class="bahasa-header">
+                        <span class="bahasa-icon">🐍</span>
+                        <div>
+                            <h4>Python</h4>
+                            <!-- Tag kesulitan -->
+                            <span class="tag-mudah">Sangat Mudah</span>
+                        </div>
+                    </div>
+                    <!-- Alasan rekomendasi -->
+                    <p>Sintaks yang bersih dan mudah dibaca, cocok untuk pemula. Digunakan luas untuk data science, AI, dan web.</p>
+                    <!-- Blok kode contoh -->
+                    <pre class="kode-blok"><code># Mencetak teks ke layar
+print("Hello, World!")</code></pre>
+                </div>
+
+                <!-- Kartu JavaScript -->
+                <div class="bahasa-card">
+                    <div class="bahasa-header">
+                        <span class="bahasa-icon">🌐</span>
+                        <div>
+                            <h4>JavaScript</h4>
+                            <span class="tag-mudah">Mudah</span>
+                        </div>
+                    </div>
+                    <p>Bahasa wajib untuk pengembangan web. Bisa langsung dicoba di browser tanpa instalasi apapun.</p>
+                    <pre class="kode-blok"><code>// Mencetak teks ke konsol browser
+console.log("Hello, World!");</code></pre>
+                </div>
+
+                <!-- Kartu Java -->
+                <div class="bahasa-card">
+                    <div class="bahasa-header">
+                        <span class="bahasa-icon">☕</span>
+                        <div>
+                            <h4>Java</h4>
+                            <span class="tag-sedang">Menengah</span>
+                        </div>
+                    </div>
+                    <p>Bahasa populer di industri dan kampus. Mengajarkan konsep OOP (Pemrograman Berorientasi Objek) dengan baik.</p>
+                    <pre class="kode-blok"><code>// Struktur dasar program Java
+public class Main {
+  public static void main(String[] args) {
+    System.out.println("Hello, World!");
+  }
+}</code></pre>
+                </div>
+
+                <!-- Kartu C++ -->
+                <div class="bahasa-card">
+                    <div class="bahasa-header">
+                        <span class="bahasa-icon">⚙️</span>
+                        <div>
+                            <h4>C++</h4>
+                            <span class="tag-sedang">Menengah</span>
+                        </div>
+                    </div>
+                    <p>Digunakan di sistem tertanam, game, dan kompetisi pemrograman. Mengajarkan konsep memori secara mendalam.</p>
+                    <pre class="kode-blok"><code>// Menyertakan library input/output
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+  cout &lt;&lt; "Hello, World!" &lt;&lt; endl;
+  return 0;
+}</code></pre>
+                </div>
+
+                <!-- Kartu PHP -->
+                <div class="bahasa-card">
+                    <div class="bahasa-header">
+                        <span class="bahasa-icon">🐘</span>
+                        <div>
+                            <h4>PHP</h4>
+                            <span class="tag-mudah">Mudah</span>
+                        </div>
+                    </div>
+                    <p>Bahasa server-side yang populer untuk membangun website dinamis. Banyak digunakan di Indonesia.</p>
+                    <pre class="kode-blok"><code>&lt;?php
+  // Mencetak teks ke halaman web
+  echo "Hello, World!";
+?&gt;</code></pre>
+                </div>
+
+                <!-- Kartu Kotlin -->
+                <div class="bahasa-card">
+                    <div class="bahasa-header">
+                        <span class="bahasa-icon">📱</span>
+                        <div>
+                            <h4>Kotlin</h4>
+                            <span class="tag-mudah">Mudah</span>
+                        </div>
+                    </div>
+                    <p>Bahasa modern untuk pengembangan aplikasi Android. Sintaksnya lebih ringkas dibanding Java.</p>
+                    <pre class="kode-blok"><code>// Fungsi utama program Kotlin
+fun main() {
+    println("Hello, World!")
+}</code></pre>
+                </div>
+
+            </div><!-- akhir bahasa-grid -->
+        </div>
+    </section>
+
+    <!-- =============================================
+         FOOTER
+    ============================================= -->
+    <footer>
+        <div class="container">
+            <p>Materi Pemrograman Dasar · Dibuat untuk keperluan pembelajaran</p>
+        </div>
+    </footer>
+
+    <!-- Menghubungkan file JavaScript eksternal -->
+    <script src="script.js"></script>
+
+</body>
 </html>

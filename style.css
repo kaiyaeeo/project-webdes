@@ -1,118 +1,476 @@
-*{
+/* =============================================
+   style.css - Tampilan Website Pemrograman Dasar
+   Tema: Putih bersih, teks hitam, font sederhana
+============================================= */
+
+/* --- RESET: Hapus margin dan padding default browser --- */
+* {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Ukuran elemen termasuk border dan padding */
 }
 
-/*warna yang dipake, jadi setap panggil pake var(--nama yang ada disini)*/
+/* --- VARIABEL WARNA: Agar mudah diubah secara konsisten --- */
 :root {
-    --bg: #0f0e17;
-    --surface: #1a1830;
-    --card: #1e1c35;
-    --accent: #ff6b6b;
-    --accent2: #ffd93d;
-    --accent3: #6bcb77;
-    --text-primary: #fffffe;
-    --text-secondary: #a7a9be;
-    --border: rgba(255, 255, 255, 0.08);
-    --glow: rgba(255, 107, 107, 0.15);
+    --putih:    #ffffff;
+    --bg-abu:   #f5f5f5;    /* Warna latar belakang selang-seling */
+    --hitam:    #1a1a1a;    /* Warna teks utama */
+    --abu-tua:  #555555;    /* Warna teks sekunder/penjelasan */
+    --abu-muda: #e0e0e0;    /* Warna garis pemisah dan border */
+
+    /* Warna aksen untuk badge dan tombol */
+    --biru:     #2563eb;
+    --hijau:    #16a34a;
+    --merah:    #dc2626;
+    --kuning:   #d97706;
+    --ungu:     #7c3aed;
 }
 
+/* --- BODY: Pengaturan dasar seluruh halaman --- */
 body {
-    font-family: sans-serif;
-    background-color: var(--bg);
-    color: var(--text-primary);
-    background-image:
-        radial-gradient(ellipse at 20% 20%, rgba(255, 107, 107, 0.07) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 80%, rgba(107, 203, 119, 0.07) 0%, transparent 50%);
+    font-family: Georgia, 'Times New Roman', serif; /* Font berkelas tapi mudah dibaca */
+    background-color: var(--putih);
+    color: var(--hitam);
+    font-size: 1rem;
+    line-height: 1.7; /* Jarak antar baris agar nyaman dibaca */
 }
 
-/* wadah buat judul biar ukuran sama posisi konten yang ada di judul bisa ngikutin ukuran layar*/
-#con-judul{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 300px;
-    border-bottom: 1px solid var(--border);
-    flex-wrap: wrap;
-    padding: 20px;
+/* --- CONTAINER: Membatasi lebar konten agar tidak terlalu lebar --- */
+.container {
+    max-width: 860px;       /* Lebar maksimum konten */
+    margin: 0 auto;         /* Posisikan di tengah halaman */
+    padding: 0 24px;        /* Padding kiri-kanan agar tidak menempel tepi */
 }
 
-/* biar posisi teks lurus ke-tengah*/
-#judul {
+/* =============================================
+   BAGIAN HERO / JUDUL UTAMA
+============================================= */
+
+#hero {
+    background-color: var(--hitam); /* Latar hitam agar kontras */
+    color: var(--putih);
+    padding: 80px 0 60px;
     text-align: center;
 }
 
-/*buat bagian judul h1*/
-#judul h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    letter-spacing: -0.02em;
-    font-weight: 700;
-    /* warna belakang teks buat masking*/
-    background: linear-gradient(135deg, #ff6b6b 0%, #ffd93d 50%, #6bcb77 100%);
-    /*pilih area yang dimask*/
-    background-clip: text;
-    -webkit-background-clip: text;
-    /*ngubah warna teks jadi transparan biar warna yang dibelakang muncul*/
-    color: transparent;
-    margin-bottom: 14px;
+/* Label kecil di atas judul */
+.label-atas {
+    display: inline-block;
+    font-family: sans-serif;            /* Font tanpa serif untuk label */
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;            /* Spasi antar huruf */
+    text-transform: uppercase;          /* Huruf kapital semua */
+    color: #aaaaaa;
+    margin-bottom: 16px;
 }
 
-/*buat bagian judul p*/
-#judul p {
-    font-size: clamp(1rem, 2.5vw, 1.25rem);
-    color: var(--text-secondary);
-    max-width: 600px;
+/* Judul utama H1 */
+#hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem); /* Ukuran responsif: min 2rem, max 3rem */
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+/* Deskripsi singkat di bawah judul hero */
+.hero-desc {
+    font-size: 1.05rem;
+    color: #cccccc;
+    max-width: 600px;       /* Batasi lebar agar mudah dibaca */
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* =============================================
+   BAGIAN PENGANTAR
+============================================= */
+
+#pengantar {
+    padding: 60px 0;
+    background-color: var(--putih);
+}
+
+/* Judul H2 di dalam seksi pengantar */
+#pengantar h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--hitam); /* Garis bawah tebal sebagai aksen */
+    padding-bottom: 10px;
+}
+
+/* Paragraf biasa */
+#pengantar p {
+    color: var(--abu-tua);
+    margin-bottom: 16px;
+}
+
+/* Kotak info/highlight */
+.info-box {
+    background-color: var(--bg-abu);
+    border-left: 4px solid var(--hitam); /* Garis kiri tebal */
+    padding: 20px 24px;
+    margin-top: 24px;
+    border-radius: 0 6px 6px 0; /* Sudut hanya di kanan */
+}
+
+/* Judul di dalam kotak info */
+.info-box strong {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+/* List di dalam kotak info */
+.info-box ul {
+    padding-left: 20px;
+    color: var(--abu-tua);
+}
+
+.info-box li {
+    margin-bottom: 6px; /* Jarak antar item list */
+}
+
+/* =============================================
+   BAGIAN JUDUL SEKSI ELEMEN
+============================================= */
+
+#elemen-judul {
+    background-color: var(--bg-abu); /* Warna berbeda sebagai pembatas visual */
+    padding: 48px 0 32px;
+}
+
+#elemen-judul h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+#elemen-judul p {
+    color: var(--abu-tua);
+}
+
+/* =============================================
+   BAGIAN SETIAP ELEMEN PEMROGRAMAN
+   Selang-seling warna putih dan abu-abu
+============================================= */
+
+/* Semua seksi elemen */
+.elemen {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--abu-muda); /* Garis pemisah tipis */
+}
+
+/* Selang-seling warna latar belakang */
+.elemen:nth-child(odd)  { background-color: var(--putih); }
+.elemen:nth-child(even) { background-color: var(--bg-abu); }
+
+/* Baris header elemen: nomor + judul */
+.elemen-header {
+    display: flex;
+    align-items: baseline; /* Sejajarkan berdasarkan garis teks */
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+/* Nomor besar di sebelah judul */
+.nomor {
+    font-family: sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--abu-muda); /* Warna abu muda agar tidak terlalu mencolok */
+    line-height: 1;
+}
+
+/* Judul elemen H3 */
+.elemen-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Paragraf dalam seksi elemen */
+.elemen p {
+    color: var(--abu-tua);
+    margin-bottom: 16px;
+}
+
+/* Teks kode inline seperti `nama_variabel` */
+code {
+    font-family: 'Courier New', monospace;
+    background-color: #eeeeee;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9em; /* Sedikit lebih kecil dari teks biasa */
+}
+
+/* Tabel informasi (digunakan di bagian Tipe Data) */
+.tabel-info {
+    width: 100%;
+    border-collapse: collapse; /* Hilangkan jarak antar sel */
+    margin: 16px 0 24px;
+    font-family: sans-serif;
+    font-size: 0.9rem;
+}
+
+/* Header tabel */
+.tabel-info th {
+    background-color: var(--hitam);
+    color: var(--putih);
+    text-align: left;
+    padding: 10px 14px;
+}
+
+/* Sel tabel */
+.tabel-info td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--abu-muda); /* Garis bawah setiap baris */
+}
+
+/* Warna selang-seling baris tabel */
+.tabel-info tr:nth-child(even) td {
+    background-color: var(--bg-abu);
+}
+
+/* =============================================
+   KOTAK CONTOH INTERAKTIF
+============================================= */
+
+/* Kotak pembungkus contoh */
+.contoh-box {
+    background-color: var(--putih);
+    border: 1px solid var(--abu-muda);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 24px;
+}
+
+/* Baris judul di dalam kotak contoh */
+.contoh-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    font-family: sans-serif;
+    font-size: 0.95rem;
+}
+
+/* Badge label (Coba Langsung) */
+.badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    color: var(--putih);
+    white-space: nowrap; /* Tidak dipotong menjadi dua baris */
+}
+
+/* Warna badge sesuai warna aksen */
+.badge-biru   { background-color: var(--biru); }
+.badge-hijau  { background-color: var(--hijau); }
+.badge-merah  { background-color: var(--merah); }
+.badge-kuning { background-color: var(--kuning); }
+.badge-ungu   { background-color: var(--ungu); }
+
+/* Grup input: input field dan tombol berjajar */
+.input-group {
+    display: flex;
+    flex-wrap: wrap;    /* Jika layar sempit, pindah ke baris baru */
+    gap: 8px;
+    margin-bottom: 12px;
+    align-items: center;
+}
+
+/* Input teks/angka */
+.input-field {
+    flex: 1;                            /* Mengisi sisa ruang yang tersedia */
+    min-width: 160px;                   /* Lebar minimum agar tidak terlalu kecil */
+    padding: 9px 12px;
+    border: 1px solid var(--abu-muda);
+    border-radius: 6px;
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    color: var(--hitam);
+    background-color: var(--putih);
+    outline: none;                      /* Hapus outline default browser */
+    transition: border-color 0.2s;     /* Animasi saat fokus */
+}
+
+/* Efek saat input sedang diklik/aktif */
+.input-field:focus {
+    border-color: var(--hitam);
+}
+
+/* Tombol aksi */
+.btn {
+    padding: 9px 18px;
+    border: none;
+    border-radius: 6px;
+    font-family: sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;                    /* Cursor berubah jadi tangan saat hover */
+    transition: opacity 0.2s;          /* Animasi saat hover */
+    white-space: nowrap;
+    color: var(--putih);
+}
+
+/* Efek hover: tombol sedikit transparan */
+.btn:hover { opacity: 0.85; }
+
+/* Warna tombol sesuai aksen */
+.btn-biru   { background-color: var(--biru); }
+.btn-hijau  { background-color: var(--hijau); }
+.btn-merah  { background-color: var(--merah); }
+.btn-kuning { background-color: var(--kuning); }
+.btn-ungu   { background-color: var(--ungu); }
+
+/* Tombol outline (tanpa latar warna) */
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--abu-muda);
+    color: var(--abu-tua);
+}
+
+/* Kotak output / hasil */
+.output {
+    background-color: var(--bg-abu);
+    border: 1px solid var(--abu-muda);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-family: 'Courier New', monospace; /* Font monospace untuk output kode */
+    font-size: 0.88rem;
+    color: #999999;                         /* Warna abu default (belum ada output) */
+    min-height: 50px;
+    line-height: 1.6;
+    white-space: pre-wrap;                  /* Jaga format newline dari JS */
+    word-break: break-word;
+    transition: color 0.2s;
+}
+
+/* Kelas 'aktif' ditambahkan JS saat ada output berhasil */
+.output.aktif {
+    color: var(--hitam); /* Teks jadi hitam saat ada hasil */
+}
+
+/* =============================================
+   BAGIAN BAHASA PEMROGRAMAN
+============================================= */
+
+#bahasa-pemrograman {
+    background-color: var(--bg-abu);
+    padding: 60px 0;
+}
+
+/* Judul seksi bahasa pemrograman */
+#bahasa-pemrograman h2 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    border-bottom: 2px solid var(--hitam);
+    padding-bottom: 10px;
+}
+
+/* Paragraf pengantar */
+#bahasa-pemrograman > .container > p {
+    color: var(--abu-tua);
+    margin-bottom: 32px;
+}
+
+/* Grid 2 kolom untuk kartu bahasa */
+.bahasa-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); /* Responsif otomatis */
+    gap: 20px;
+}
+
+/* Kartu tiap bahasa pemrograman */
+.bahasa-card {
+    background-color: var(--putih);
+    border: 1px solid var(--abu-muda);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+/* Baris header kartu: ikon + nama + tag */
+.bahasa-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+/* Ikon emoji bahasa */
+.bahasa-icon {
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+/* Nama bahasa pemrograman */
+.bahasa-header h4 {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+
+/* Tag tingkat kesulitan */
+.tag-mudah,
+.tag-sedang {
+    font-family: sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 20px;
+}
+
+/* Warna tag mudah: hijau */
+.tag-mudah  { background-color: #dcfce7; color: #15803d; }
+/* Warna tag menengah: kuning */
+.tag-sedang { background-color: #fef9c3; color: #a16207; }
+
+/* Deskripsi bahasa */
+.bahasa-card p {
+    color: var(--abu-tua);
+    font-size: 0.9rem;
+    margin-bottom: 14px;
     line-height: 1.6;
 }
 
-/* wadah buat topik, fungsinya sama kaya wadah judul */
-#con-topik{
-    display:flex;
-    align-items: stretch;
-    justify-content: center;
-    min-height: 500px;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 40px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+/* Blok kode contoh "Hello World" */
+.kode-blok {
+    background-color: #1a1a1a;  /* Latar hitam agar kontras */
+    color: #d4d4d4;              /* Teks abu terang */
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    overflow-x: auto;            /* Scroll horizontal jika kode panjang */
+    white-space: pre;            /* Jaga indentasi kode */
 }
 
-/* blok topiknya */
-.topik{
-    text-align: left;
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 25px;
-    width: 100%;
-    max-width: 320px;
-    border-radius: 15px;
-    transition: all 0.3s ease;
+/* =============================================
+   FOOTER
+============================================= */
+
+footer {
+    background-color: var(--hitam);
+    color: #777777;
+    text-align: center;
+    padding: 24px 0;
+    font-family: sans-serif;
+    font-size: 0.85rem;
 }
 
-/*Efek hover*/
-.topik:hover {
-    transform: translateY(-5px);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-}
+/* =============================================
+   RESPONSIF: Layar kecil (smartphone)
+============================================= */
 
-/*judul topik*/
-.topik h3{
-    font-size: 1.25rem;
-    text-transform: capitalize;
-    margin-bottom: 12px;
-}
+@media (max-width: 600px) {
+    /* Judul hero lebih kecil di HP */
+    #hero h1 { font-size: 1.8rem; }
 
-/*deskripsi topik*/
-.topik p {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
+    /* Kartu bahasa 1 kolom di HP */
+    .bahasa-grid { grid-template-columns: 1fr; }
 
-/*buat ganti warna judul topik*/
-.topik:nth-child(1) h3, .topik:nth-child(4) h3 { color: var(--accent); } /*topik pertama warnanya ini*/
-.topik:nth-child(2) h3, .topik:nth-child(5) h3 { color: var(--accent2); } /*topik kedua warnanya ini*/
-.topik:nth-child(3) h3, .topik:nth-child(6) h3 { color: var(--accent3); } /*topik ketiga warnanya ini*/
+    /* Nomor elemen lebih kecil */
+    .nomor { font-size: 2rem; }
+}
