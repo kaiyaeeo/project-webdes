@@ -165,7 +165,7 @@ function demoTipeData() {
 
     // Cek apakah input kosong
     if (inputTeks === "") {
-        tampilkanOutput("output-tipedata", "⚠️ Ketik sesuatu dulu ya!", false);
+        tampilkanOutput("output-tipedata", "Ketikan sesuatu", false);
         return;
     }
 
@@ -241,23 +241,18 @@ function demoPercabangan() {
     if (nilai >= 90) {
         // Kondisi pertama: nilai 90 ke atas
         grade = "A - Sangat Baik ";
-        emoji = "🎉";
     } else if (nilai >= 75) {
         // Kondisi kedua: nilai 75 sampai 89
         grade = "B - Baik ";
-        emoji = "😊";
     } else if (nilai >= 60) {
         // Kondisi ketiga: nilai 60 sampai 74
         grade = "C - Cukup";
-        emoji = "😐";
     } else if (nilai >= 40) {
         // Kondisi keempat: nilai 40 sampai 59
         grade = "D - Kurang";
-        emoji = "😕";
     } else {
         // Kondisi terakhir (else): nilai di bawah 40
         grade = "E - Perlu Belajar Lebih Keras";
-        emoji = "📚";
     }
 
     // Susun teks hasil
