@@ -206,9 +206,9 @@ function demoTipeData() {
     // Susun teks hasil
     let hasil =
         `${emoji} Input: "${inputTeks}"\n\n` +
-        `📌 Tipe Terdeteksi : ${tipeDeteksi}\n` +
-        `🔍 typeof          : "${tipePrimitive}"\n\n` +
-        `💡 Tipe data umum:\n` +
+        `   Tipe Terdeteksi : ${tipeDeteksi}\n` +
+        `   typeof          : "${tipePrimitive}"\n\n` +
+        `   Tipe data umum:\n` +
         `   "Teks"  → string\n` +
         `   42      → number (integer)\n` +
         `   3.14    → number (float)\n` +
@@ -230,7 +230,7 @@ function demoPercabangan() {
 
     // Validasi: pastikan nilai antara 0 sampai 100
     if (isNaN(nilai) || nilai < 0 || nilai > 100) {
-        tampilkanOutput("output-percabangan", "⚠️ Masukkan angka antara 0 sampai 100!", false);
+        tampilkanOutput("output-percabangan", "Masukkan angka antara 0 sampai 100", false);
         return;
     }
 
@@ -240,11 +240,11 @@ function demoPercabangan() {
 
     if (nilai >= 90) {
         // Kondisi pertama: nilai 90 ke atas
-        grade = "A - Sangat Baik 🌟";
+        grade = "A - Sangat Baik ";
         emoji = "🎉";
     } else if (nilai >= 75) {
         // Kondisi kedua: nilai 75 sampai 89
-        grade = "B - Baik 👍";
+        grade = "B - Baik ";
         emoji = "😊";
     } else if (nilai >= 60) {
         // Kondisi ketiga: nilai 60 sampai 74
