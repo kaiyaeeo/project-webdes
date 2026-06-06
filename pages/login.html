@@ -1,0 +1,158 @@
+    <!DOCTYPE html>
+    <html lang="id">
+    <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Masuk — BookCircle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="../css/main.css"/>
+    <link rel="stylesheet" href="../css/components.css"/>
+    <link rel="stylesheet" href="../css/pages.css"/>
+    </head>
+    <body>
+    <div class="toast" id="toast"></div>
+
+    <div class="auth-layout">
+
+    <!-- LEFT SIDE - branding -->
+    <div class="auth-side">
+        <div class="auth-side-bg">
+        <div class="auth-side-blob asb1"></div>
+        <div class="auth-side-blob asb2"></div>
+        </div>
+        <div class="auth-side-content anim-fadeUp">
+        <a href="../index.html" class="nav-logo" style="text-decoration:none">
+            <span class="logo-star">✦</span> BookCircle
+        </a>
+        <h2>Selamat Datang Kembali!</h2>
+        <p>Masuk ke akunmu dan temukan ribuan buku teks berkualitas dengan harga terjangkau dari sesama mahasiswa.</p>
+        <div class="auth-side-stats">
+            <div class="auth-stat">
+            <div class="auth-stat-icon">📚</div>
+            <div class="auth-stat-text">
+                <strong>2.400+</strong>
+                <span>Buku Tersedia</span>
+            </div>
+            </div>
+            <div class="auth-stat">
+            <div class="auth-stat-icon">👥</div>
+            <div class="auth-stat-text">
+                <strong>1.800+</strong>
+                <span>Mahasiswa Aktif</span>
+            </div>
+            </div>
+            <div class="auth-stat">
+            <div class="auth-stat-icon">🎓</div>
+            <div class="auth-stat-text">
+                <strong>340+</strong>
+                <span>Kampus Terdaftar</span>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- RIGHT SIDE - form -->
+    <div class="auth-form-side">
+        <div class="auth-form-box anim-fadeUp">
+
+        <a href="../index.html" class="auth-back">
+            <i class="fa fa-arrow-left"></i> Kembali ke Beranda
+        </a>
+
+        <h1>Masuk</h1>
+        <p class="sub-text">Belum punya akun? <a href="register.html" style="color:var(--coffee);font-weight:700">Daftar gratis →</a></p>
+
+        <div class="form-group">
+            <label class="form-label">Email</label>
+            <div class="input-icon-wrap">
+            <i class="fa fa-envelope input-icon"></i>
+            <input type="email" id="loginEmail" class="form-control"
+                placeholder="email@kampus.ac.id" autocomplete="email"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label" style="display:flex;justify-content:space-between">
+            Password
+            <a href="#" style="font-size:0.78rem;font-weight:500;color:var(--taupe);text-transform:none;letter-spacing:0">Lupa password?</a>
+            </label>
+            <div class="input-icon-wrap" style="position:relative">
+            <i class="fa fa-lock input-icon"></i>
+            <input type="password" id="loginPass" class="form-control"
+                placeholder="Masukkan password" autocomplete="current-password"
+                style="padding-right:42px" onkeydown="if(event.key==='Enter')doLogin()"/>
+            <button class="pass-reveal" onclick="togglePass('loginPass', this)" type="button">
+                <i class="fa fa-eye"></i>
+            </button>
+            </div>
+        </div>
+
+        <label style="display:flex;align-items:center;gap:8px;font-size:0.87rem;color:var(--text-secondary);cursor:pointer;margin-bottom:20px">
+            <input type="checkbox" id="rememberMe" style="accent-color:var(--coffee);width:15px;height:15px"/>
+            Ingat saya di perangkat ini
+        </label>
+
+        <button class="btn-primary full lg" onclick="doLogin()">
+            <i class="fa fa-sign-in-alt"></i> Masuk
+        </button>
+
+        <div class="auth-divider">atau lanjutkan dengan</div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px">
+            <button class="btn-outline sm" onclick="showToast('🚧 Fitur segera hadir!')" style="padding:10px">
+            <i class="fab fa-google" style="color:#EA4335"></i> Google
+            </button>
+            <button class="btn-outline sm" onclick="showToast('🚧 Fitur segera hadir!')" style="padding:10px">
+            <i class="fab fa-facebook" style="color:#1877F2"></i> Facebook
+            </button>
+        </div>
+
+        <p class="auth-switch">Belum punya akun? <a href="register.html">Daftar sekarang</a></p>
+
+        </div>
+    </div>
+    </div>
+
+    <script src="../js/data.js"></script>
+    <script>
+    // Check if already logged in
+    if (isLoggedIn()) {
+        window.location.href = 'dashboard.html';
+    }
+
+    function togglePass(id, btn) {
+        const inp = document.getElementById(id);
+        inp.type = inp.type === 'password' ? 'text' : 'password';
+        btn.querySelector('i').className = inp.type === 'password' ? 'fa fa-eye' : 'fa fa-eye-slash';
+    }
+
+    function doLogin() {
+        const email = document.getElementById('loginEmail').value.trim();
+        const pass  = document.getElementById('loginPass').value;
+
+        if (!email || !pass) { showToast('⚠️ Isi semua field terlebih dahulu'); return; }
+        if (!email.includes('@')) { showToast('⚠️ Format email tidak valid'); return; }
+        if (pass.length < 4)  { showToast('⚠️ Password terlalu pendek'); return; }
+
+        // Simulate login
+        AppState.user = {
+        name: email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+        email,
+        campus: 'UNSOED Purwokerto',
+        };
+        localStorage.setItem('bc_user', JSON.stringify(AppState.user));
+        showToast('✅ Berhasil masuk!');
+
+        // Redirect: ke halaman sebelumnya atau dashboard
+        const params = new URLSearchParams(window.location.search);
+        const redirect = params.get('redirect');
+        setTimeout(() => {
+        window.location.href = redirect || 'dashboard.html';
+        }, 700);
+    }
+    </script>
+    </body>
+    </html>

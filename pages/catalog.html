@@ -1,0 +1,284 @@
+    <!DOCTYPE html>
+    <html lang="id">
+    <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Katalog Buku — BookCircle</title>
+    <link rel="stylesheet" href="../css/global.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <style>
+        .catalog-layout{display:flex;padding-top:var(--nav-h);min-height:100vh}
+        .filter-col{
+        width:268px;min-width:268px;
+        background:var(--snow);border-right:1.5px solid var(--border);
+        padding:24px 18px;position:sticky;top:var(--nav-h);
+        height:calc(100vh - var(--nav-h));overflow-y:auto;
+        transition:var(--ease);
+        }
+        .filter-col::-webkit-scrollbar{width:4px}
+        .filter-col::-webkit-scrollbar-thumb{background:var(--almond-md);border-radius:2px}
+        .fh{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+        .fh h3{font-size:1.05rem}
+        .fh button{font-size:.8rem;color:var(--taupe);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif}
+        .fh button:hover{color:var(--coffee)}
+        .fg-filter{margin-bottom:20px}
+        .fg-filter>label{display:block;font-size:.78rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:9px}
+        .fg-filter select,.fg-filter input[type=text],.fg-filter input[type=number]{
+        width:100%;padding:9px 11px;
+        border:1.5px solid var(--border);border-radius:8px;
+        background:var(--snow);color:var(--text1);outline:none;transition:var(--ease);
+        }
+        .fg-filter select:focus,.fg-filter input:focus{border-color:var(--coffee)}
+        .chk-list{display:flex;flex-direction:column;gap:8px}
+        .chk-list label{
+        display:flex;align-items:center;gap:8px;
+        font-size:.86rem;color:var(--text2);cursor:pointer;
+        }
+        .chk-list input[type=checkbox]{accent-color:var(--coffee);width:14px;height:14px}
+        .price-row{display:flex;gap:7px;align-items:center}
+        .price-row input{flex:1}
+        .price-row span{color:var(--taupe);font-size:.8rem}
+
+        .catalog-main{flex:1;padding:24px 28px 60px}
+        .topbar{display:flex;gap:10px;align-items:center;margin-bottom:18px;flex-wrap:wrap}
+        .topbar .searchbar{flex:1;min-width:180px}
+        .topbar select{
+        padding:9px 13px;border:1.5px solid var(--border);border-radius:9px;
+        background:var(--snow);font-family:'DM Sans',sans-serif;font-size:.87rem;
+        color:var(--text1);cursor:pointer;outline:none;
+        }
+        .filter-toggle-btn{
+        display:none;padding:9px 14px;border:1.5px solid var(--border);
+        border-radius:9px;background:var(--snow);cursor:pointer;color:var(--coffee);
+        font-size:.88rem;font-family:'DM Sans',sans-serif;display:none;align-items:center;gap:6px;
+        }
+        .res-info{font-size:.83rem;color:var(--taupe);margin-bottom:14px}
+        .pagination{display:flex;justify-content:center;gap:6px;margin-top:36px;flex-wrap:wrap}
+        .pagination button{
+        width:36px;height:36px;border-radius:7px;
+        border:1.5px solid var(--border);background:var(--snow);
+        color:var(--text2);cursor:pointer;font-size:.88rem;transition:var(--ease);
+        font-family:'DM Sans',sans-serif;
+        }
+        .pagination button.active,.pagination button:hover{background:var(--coffee);color:var(--snow);border-color:var(--coffee)}
+
+        @media(max-width:900px){
+        .filter-col{
+            display:none;position:fixed;z-index:800;top:var(--nav-h);
+            height:calc(100vh - var(--nav-h));box-shadow:var(--sh-xl);
+        }
+        .filter-col.open{display:block}
+        .filter-toggle-btn{display:flex!important}
+        .catalog-main{padding:16px}
+        }
+    </style>
+    </head>
+    <body>
+    <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+        <a class="nav-logo" href="../index.html"><span class="logo-star">✦</span>BookCircle</a>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html">Beranda</a></li>
+        <li><a href="catalog.html" class="active">Katalog</a></li>
+        <li><a href="wishlist.html">Wishlist</a></li>
+        <li><a href="about.html">Tentang</a></li>
+        </ul>
+        <div class="nav-right" id="navRight"></div>
+    </div>
+    </nav>
+
+    <div class="catalog-layout">
+    <!-- FILTER SIDEBAR -->
+    <aside class="filter-col" id="filterCol">
+        <div class="fh">
+        <h3>Filter</h3>
+        <button onclick="resetFilters()">Reset Semua</button>
+        </div>
+
+        <div class="fg-filter">
+        <label>Kategori</label>
+        <select id="fCat" onchange="applyFilters()">
+            <option value="">Semua Kategori</option>
+            <option>Teknik & Sains</option>
+            <option>Ekonomi & Bisnis</option>
+            <option>Hukum</option>
+            <option>Kedokteran</option>
+            <option>Bahasa & Sastra</option>
+            <option>Catatan Kuliah</option>
+            <option>Psikologi</option>
+            <option>Pertanian</option>
+        </select>
+        </div>
+
+        <div class="fg-filter">
+        <label>Mata Kuliah</label>
+        <input type="text" id="fCourse" placeholder="Cth: Kalkulus, Fisika..." oninput="applyFilters()"/>
+        </div>
+
+        <div class="fg-filter">
+        <label>Dosen Pengampu</label>
+        <input type="text" id="fLecturer" placeholder="Nama dosen..." oninput="applyFilters()"/>
+        </div>
+
+        <div class="fg-filter">
+        <label>Jenis Listing</label>
+        <div class="chk-list">
+            <label><input type="checkbox" id="cJual" value="Dijual" onchange="applyFilters()"/> Dijual</label>
+            <label><input type="checkbox" id="cTukar" value="Ditukar" onchange="applyFilters()"/> Ditukar</label>
+            <label><input type="checkbox" id="cDonasi" value="Donasi" onchange="applyFilters()"/> Donasi Gratis</label>
+        </div>
+        </div>
+
+        <div class="fg-filter">
+        <label>Kondisi Buku</label>
+        <div class="chk-list">
+            <label><input type="checkbox" id="cBaru" value="Seperti Baru" onchange="applyFilters()"/> Seperti Baru</label>
+            <label><input type="checkbox" id="cBaik" value="Cukup Baik" onchange="applyFilters()"/> Cukup Baik</label>
+            <label><input type="checkbox" id="cCoretan" value="Ada Coretan" onchange="applyFilters()"/> Ada Coretan</label>
+            <label><input type="checkbox" id="cFoto" value="Fotokopi" onchange="applyFilters()"/> Fotokopi</label>
+        </div>
+        </div>
+
+        <div class="fg-filter">
+        <label>Rentang Harga (Rp)</label>
+        <div class="price-row">
+            <input type="number" id="fPMin" placeholder="Min" oninput="applyFilters()"/>
+            <span>—</span>
+            <input type="number" id="fPMax" placeholder="Max" oninput="applyFilters()"/>
+        </div>
+        </div>
+
+        <div class="fg-filter">
+        <label>Lokasi / Kampus</label>
+        <input type="text" id="fLoc" placeholder="Cth: UNSOED, UGM..." oninput="applyFilters()"/>
+        </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="catalog-main">
+        <div class="topbar">
+        <div class="searchbar">
+            <i class="fa fa-search"></i>
+            <input type="text" id="fSearch" placeholder="Cari judul, penulis, dosen..." oninput="applyFilters()"/>
+        </div>
+        <select id="fSort" onchange="applyFilters()">
+            <option value="newest">Terbaru</option>
+            <option value="price-asc">Harga ↑</option>
+            <option value="price-desc">Harga ↓</option>
+            <option value="condition">Kondisi Terbaik</option>
+        </select>
+        <button class="filter-toggle-btn" id="filterToggleBtn" onclick="toggleFilter()">
+            <i class="fa fa-sliders-h"></i> Filter
+        </button>
+        </div>
+        <div class="res-info" id="resInfo"></div>
+        <div class="book-grid" id="bookGrid"></div>
+        <div class="pagination" id="pgn"></div>
+    </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+    <div class="foot-grid">
+        <div class="foot-brand"><div class="nav-logo"><span class="logo-star">✦</span>BookCircle</div><p>Platform sirkulasi buku & catatan kampus.</p></div>
+        <div class="foot-col"><h4>Platform</h4><a href="catalog.html">Katalog</a><a href="sell.html">Jual Buku</a><a href="wishlist.html">Wishlist</a></div>
+        <div class="foot-col"><h4>Dukungan</h4><a href="#">FAQ</a><a href="#">Hubungi Kami</a></div>
+        <div class="foot-col"><h4>Legal</h4><a href="#">Syarat & Ketentuan</a><a href="#">Privasi</a></div>
+    </div>
+    <div class="foot-bottom"><p>© 2025 BookCircle.</p></div>
+    </footer>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+    let filtered = [];
+    let curPage = 1;
+    const PER = 12;
+
+    function applyFilters() {
+        const q       = document.getElementById('fSearch').value.toLowerCase();
+        const cat     = document.getElementById('fCat').value;
+        const course  = document.getElementById('fCourse').value.toLowerCase();
+        const lec     = document.getElementById('fLecturer').value.toLowerCase();
+        const loc     = document.getElementById('fLoc').value.toLowerCase();
+        const pMin    = parseFloat(document.getElementById('fPMin').value) || 0;
+        const pMax    = parseFloat(document.getElementById('fPMax').value) || Infinity;
+        const sort    = document.getElementById('fSort').value;
+
+        const chkTypes = ['cJual','cTukar','cDonasi'].filter(id=>document.getElementById(id).checked).map(id=>document.getElementById(id).value);
+        const chkConds = ['cBaru','cBaik','cCoretan','cFoto'].filter(id=>document.getElementById(id).checked).map(id=>document.getElementById(id).value);
+
+        const all = getBooksFromStorage();
+        filtered = all.filter(b => {
+        const matchQ    = !q || [b.title,b.author,b.course,b.lecturer,b.location].some(s=>(s||'').toLowerCase().includes(q));
+        const matchCat  = !cat || b.category === cat;
+        const matchCourse = !course || (b.course||'').toLowerCase().includes(course);
+        const matchLec  = !lec || (b.lecturer||'').toLowerCase().includes(lec);
+        const matchLoc  = !loc || (b.location||'').toLowerCase().includes(loc);
+        const matchType = !chkTypes.length || chkTypes.includes(b.type);
+        const matchCond = !chkConds.length || chkConds.includes(b.condition);
+        const matchP    = b.type !== 'Dijual' || (b.price >= pMin && b.price <= pMax);
+        return matchQ && matchCat && matchCourse && matchLec && matchLoc && matchType && matchCond && matchP;
+        });
+
+        const condOrder = {'Seperti Baru':1,'Cukup Baik':2,'Ada Coretan':3,'Fotokopi':4};
+        if (sort==='price-asc') filtered.sort((a,b)=>a.price-b.price);
+        else if (sort==='price-desc') filtered.sort((a,b)=>b.price-a.price);
+        else if (sort==='condition') filtered.sort((a,b)=>(condOrder[a.condition]||5)-(condOrder[b.condition]||5));
+        else filtered.sort((a,b)=>b.id-a.id);
+
+        curPage = 1;
+        renderPage();
+    }
+
+    function renderPage() {
+        const grid = document.getElementById('bookGrid');
+        const info = document.getElementById('resInfo');
+        const pgn  = document.getElementById('pgn');
+        const start = (curPage-1)*PER;
+        const slice = filtered.slice(start, start+PER);
+
+        info.textContent = `Menampilkan ${slice.length} dari ${filtered.length} buku`;
+
+        if (!slice.length) {
+        grid.innerHTML = `<div class="empty" style="grid-column:1/-1"><i class="fa fa-search"></i><p>Tidak ada buku yang cocok dengan filter kamu.</p></div>`;
+        } else {
+        grid.innerHTML = slice.map(bookCardHTML).join('');
+        }
+
+        const pages = Math.ceil(filtered.length / PER);
+        pgn.innerHTML = Array.from({length:pages},(_,i)=>
+        `<button class="${i+1===curPage?'active':''}" onclick="goPage(${i+1})">${i+1}</button>`
+        ).join('');
+    }
+
+    function goPage(n) {
+        curPage = n;
+        renderPage();
+        window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    function resetFilters() {
+        ['fCat','fSort'].forEach(id=>document.getElementById(id).value=id==='fSort'?'newest':'');
+        ['fSearch','fCourse','fLecturer','fLoc','fPMin','fPMax'].forEach(id=>document.getElementById(id).value='');
+        ['cJual','cTukar','cDonasi','cBaru','cBaik','cCoretan','cFoto'].forEach(id=>document.getElementById(id).checked=false);
+        applyFilters();
+    }
+
+    function toggleFilter() {
+        document.getElementById('filterCol').classList.toggle('open');
+    }
+
+    // Read URL params
+    window.addEventListener('DOMContentLoaded', () => {
+        const p = new URLSearchParams(window.location.search);
+        if (p.get('q')) document.getElementById('fSearch').value = p.get('q');
+        if (p.get('cat')) document.getElementById('fCat').value = p.get('cat');
+        applyFilters();
+    });
+    </script>
+    </body>
+    </html>

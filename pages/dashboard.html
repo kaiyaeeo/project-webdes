@@ -1,0 +1,292 @@
+    <!DOCTYPE html>
+    <html lang="id">
+    <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dashboard — BookCircle</title>
+    <link rel="stylesheet" href="../css/global.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <style>
+        .dash-layout{display:flex;min-height:100vh;padding-top:var(--nav-h)}
+        .dash-side{
+        width:250px;min-width:250px;background:var(--coffee);
+        display:flex;flex-direction:column;padding:24px 14px;gap:6px;
+        position:sticky;top:var(--nav-h);height:calc(100vh - var(--nav-h));overflow-y:auto;
+        }
+        .dash-profile{
+        display:flex;align-items:center;gap:11px;padding:14px;
+        background:rgba(255,255,255,.07);border-radius:var(--r);margin-bottom:6px;
+        }
+        .dash-profile img{width:42px;height:42px;border-radius:50%;border:2px solid var(--almond-md)}
+        .dash-profile h4{font-size:.88rem;color:var(--snow);font-family:'DM Sans',sans-serif;font-weight:600;line-height:1.3}
+        .dash-profile p{font-size:.72rem;color:rgba(255,251,255,.5);margin-top:1px}
+        .dash-nav-link{
+        display:flex;align-items:center;gap:10px;
+        padding:10px 13px;border-radius:9px;font-size:.87rem;font-weight:500;
+        color:rgba(255,251,255,.6);transition:var(--ease);cursor:pointer;border:none;
+        background:none;font-family:'DM Sans',sans-serif;text-align:left;width:100%;
+        }
+        .dash-nav-link i{width:16px;flex-shrink:0}
+        .dash-nav-link:hover,.dash-nav-link.active{background:rgba(255,255,255,.1);color:var(--snow)}
+        .dash-logout{
+        margin-top:auto;padding:10px 13px;border-radius:9px;
+        color:rgba(255,251,255,.45);font-size:.83rem;font-weight:500;
+        border:1px solid rgba(255,255,255,.12);background:none;cursor:pointer;
+        font-family:'DM Sans',sans-serif;transition:var(--ease);
+        }
+        .dash-logout:hover{background:rgba(255,0,0,.12);color:#ff9999}
+
+        .dash-main{flex:1;padding:32px;overflow-y:auto;background:var(--almond-lt)}
+        .dash-title{font-size:1.5rem;margin-bottom:24px}
+        .stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin-bottom:28px}
+        .stat-card{background:var(--snow);border:1.5px solid var(--border);border-radius:var(--r);padding:18px}
+        .stat-card .ico{font-size:1.4rem;margin-bottom:7px}
+        .stat-card .num{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:900;color:var(--coffee)}
+        .stat-card .lbl{font-size:.74rem;color:var(--taupe);text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
+        .quick-actions{display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap}
+        .activity-list{display:flex;flex-direction:column;gap:10px}
+        .act-item{
+        display:flex;align-items:center;gap:13px;
+        padding:13px 15px;background:var(--snow);
+        border:1.5px solid var(--border);border-radius:var(--r);
+        }
+        .act-item .act-ico{font-size:1.3rem}
+        .act-item .act-text{flex:1;font-size:.88rem;font-weight:500}
+        .act-item .act-time{font-size:.75rem;color:var(--taupe)}
+        .status-pill{
+        padding:3px 9px;border-radius:5px;font-size:.72rem;font-weight:700;
+        }
+        .s-baru{background:#d4edda;color:#155724}
+        .s-proses{background:#cce5ff;color:#004085}
+        .s-selesai{background:#e2e3e5;color:#383d41}
+
+        /* tab content */
+        .tab-content{display:none}
+        .tab-content.active{display:block}
+
+        /* profile form */
+        .profile-avatar-row{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+        .profile-avatar-row img{width:68px;height:68px;border-radius:50%;border:3px solid var(--almond-md)}
+
+        /* listings mini */
+        .listing-controls{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px}
+
+        /* orders */
+        .order-row{
+        display:flex;align-items:center;gap:14px;
+        padding:14px 16px;background:var(--snow);border:1.5px solid var(--border);
+        border-radius:var(--r);margin-bottom:10px;
+        }
+        .order-bk{width:50px;height:66px;border-radius:3px 8px 8px 3px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+        .order-info{flex:1}
+        .order-info strong{display:block;font-size:.9rem}
+        .order-info span{font-size:.78rem;color:var(--taupe)}
+
+        /* messages */
+        .msg-list{display:flex;flex-direction:column;gap:10px}
+        .msg-row{
+        display:flex;align-items:center;gap:13px;padding:13px 15px;
+        background:var(--snow);border:1.5px solid var(--border);border-radius:var(--r);
+        cursor:pointer;transition:var(--ease);
+        }
+        .msg-row:hover{background:var(--almond-lt)}
+        .msg-row img{width:40px;height:40px;border-radius:50%}
+        .msg-info{flex:1}
+        .msg-info strong{display:block;font-size:.88rem}
+        .msg-info span{font-size:.78rem;color:var(--taupe)}
+        .msg-time{font-size:.73rem;color:var(--taupe)}
+
+        @media(max-width:860px){
+        .dash-layout{flex-direction:column}
+        .dash-side{width:100%;height:auto;position:relative;flex-direction:row;flex-wrap:wrap;padding:14px;gap:4px}
+        .dash-profile{width:100%}
+        .dash-nav-link{font-size:.8rem;padding:8px 10px}
+        .dash-logout{margin-top:0;width:100%}
+        .dash-main{padding:20px 16px}
+        }
+    </style>
+    </head>
+    <body>
+    <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+        <a class="nav-logo" href="../index.html"><span class="logo-star">✦</span>BookCircle</a>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html">Beranda</a></li>
+        <li><a href="catalog.html">Katalog</a></li>
+        <li><a href="wishlist.html">Wishlist</a></li>
+        </ul>
+        <div class="nav-right" id="navRight"></div>
+    </div>
+    </nav>
+
+    <div class="dash-layout">
+    <aside class="dash-side" id="dashSide">
+        <div class="dash-profile" id="dashProfile"></div>
+        <button class="dash-nav-link active" onclick="switchTab('overview',this)"><i class="fa fa-th-large"></i> Overview</button>
+        <button class="dash-nav-link" onclick="switchTab('listings',this)"><i class="fa fa-book"></i> Listinganku</button>
+        <button class="dash-nav-link" onclick="switchTab('orders',this)"><i class="fa fa-box"></i> Pesanan</button>
+        <button class="dash-nav-link" onclick="switchTab('wishlist',this)"><i class="fa fa-heart"></i> Wishlist</button>
+        <button class="dash-nav-link" onclick="switchTab('messages',this)"><i class="fa fa-comments"></i> Pesan</button>
+        <button class="dash-nav-link" onclick="switchTab('profile',this)"><i class="fa fa-user"></i> Profil</button>
+        <button class="dash-logout" onclick="doLogout(event)"><i class="fa fa-sign-out-alt"></i> Keluar</button>
+    </aside>
+
+    <main class="dash-main" id="dashMain">
+        <!-- Content injected by JS -->
+    </main>
+    </div>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+    // Guard
+    const _u = getUser();
+    if (!_u) window.location.href = 'login.html?redirect=dashboard';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        if (!getUser()) return;
+        const u = getUser();
+        document.getElementById('dashProfile').innerHTML = `
+        <img src="${u.avatar}" alt="${u.name}"/>
+        <div><h4>${u.name}</h4><p>${u.email}</p></div>
+        `;
+        renderTab('overview');
+    });
+
+    function switchTab(tab, btn) {
+        document.querySelectorAll('.dash-nav-link').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        renderTab(tab);
+    }
+
+    function renderTab(tab) {
+        const el = document.getElementById('dashMain');
+        const u = getUser();
+        if (!u) return;
+        const cart = getCart();
+        const wish = getWishlist();
+        const reqs = getRequests();
+        const ownBooks = getBooksFromStorage().filter(b=>b.isOwn);
+
+        if (tab === 'overview') {
+        el.innerHTML = `
+            <h2 class="dash-title">Selamat Datang, <em>${u.name.split(' ')[0]}</em> ✦</h2>
+            <div class="stat-grid">
+            <div class="stat-card"><div class="ico">📚</div><div class="num">${ownBooks.length}</div><div class="lbl">Listing Aktif</div></div>
+            <div class="stat-card"><div class="ico">🛒</div><div class="num">${cart.length}</div><div class="lbl">Di Keranjang</div></div>
+            <div class="stat-card"><div class="ico">❤️</div><div class="num">${wish.length}</div><div class="lbl">Wishlist</div></div>
+            <div class="stat-card"><div class="ico">📋</div><div class="num">${reqs.length}</div><div class="lbl">Permintaan</div></div>
+            </div>
+            <div class="quick-actions">
+            <a href="sell.html" class="btn-primary"><i class="fa fa-plus"></i> Jual Buku</a>
+            <a href="catalog.html" class="btn-outline"><i class="fa fa-search"></i> Cari Buku</a>
+            <a href="wishlist.html" class="btn-outline"><i class="fa fa-heart"></i> Wishlist</a>
+            <a href="cart.html" class="btn-outline"><i class="fa fa-shopping-bag"></i> Keranjang</a>
+            </div>
+            <h3 style="font-size:1.1rem;margin-bottom:14px">Aktivitas Terakhir</h3>
+            <div class="activity-list">
+            <div class="act-item"><span class="act-ico">📚</span><span class="act-text">Akun kamu berhasil dibuat</span><span class="act-time">Baru saja</span></div>
+            <div class="act-item"><span class="act-ico">💬</span><span class="act-text">Fitur chat tersedia di setiap halaman buku</span><span class="act-time">Tips</span></div>
+            <div class="act-item"><span class="act-ico">✨</span><span class="act-text">Mulai dengan menjelajahi katalog buku kampus</span><span class="act-time">Saran</span></div>
+            </div>
+        `;
+        } else if (tab === 'listings') {
+        el.innerHTML = `
+            <div class="listing-controls">
+            <h2 class="dash-title" style="margin:0">Listinganku</h2>
+            <a href="sell.html" class="btn-primary"><i class="fa fa-plus"></i> Tambah Buku</a>
+            </div>
+            ${ownBooks.length
+            ? `<div class="book-grid">${ownBooks.map(bookCardHTML).join('')}</div>`
+            : `<div class="empty"><i class="fa fa-book"></i><p>Belum ada listing.</p><a href="sell.html" class="btn-primary" style="margin-top:14px">Jual Buku Pertamamu</a></div>`
+            }
+        `;
+        } else if (tab === 'orders') {
+        el.innerHTML = `
+            <h2 class="dash-title">Pesananku</h2>
+            ${[
+            {title:'Kalkulus Edisi 9',seller:'Rizky A.',price:85000,date:'20 Jun 2025',status:'selesai',color:'#362417',tc:'#F1DABF'},
+            {title:'Hukum Perdata Indonesia',seller:'Andi S.',price:45000,date:'18 Jun 2025',status:'proses',color:'#000500',tc:'#F1DABF'},
+            ].map(o=>`
+            <div class="order-row">
+                <div class="order-bk" style="background:${o.color}"><span style="color:${o.tc};font-size:.55rem;font-family:'Playfair Display',serif;font-weight:700;text-align:center;padding:4px">${o.title.substring(0,12)}</span></div>
+                <div class="order-info"><strong>${o.title}</strong><span>Dari ${o.seller} · ${o.date}</span></div>
+                <div style="text-align:right">
+                <div style="font-family:'Playfair Display',serif;font-weight:700;color:var(--coffee);font-size:.95rem">Rp ${o.price.toLocaleString('id-ID')}</div>
+                <span class="status-pill s-${o.status}">${o.status==='selesai'?'Selesai':'Diproses'}</span>
+                </div>
+            </div>
+            `).join('')}
+            ${cart.length>0?`<h3 style="font-size:1.1rem;margin:20px 0 14px">Di Keranjang</h3>`+cart.map(b=>`
+            <div class="order-row">
+                <div class="order-bk" style="background:${b.color}"><span style="color:${b.tc};font-size:.5rem;font-family:'Playfair Display',serif;font-weight:700;text-align:center;padding:4px">${b.title.substring(0,12)}</span></div>
+                <div class="order-info"><strong>${b.title}</strong><span>${b.seller} · ${b.condition}</span></div>
+                <div class="bc-price">${b.type==='Donasi'?'Gratis':b.type==='Ditukar'?'Tukar':'Rp '+b.price.toLocaleString('id-ID')}</div>
+            </div>
+            `).join(''):''}
+        `;
+        } else if (tab === 'wishlist') {
+        el.innerHTML = `
+            <h2 class="dash-title">Wishlist Saya</h2>
+            ${wish.length
+            ? `<div class="book-grid">${wish.map(bookCardHTML).join('')}</div>`
+            : `<div class="empty"><i class="fa fa-heart"></i><p>Belum ada buku tersimpan.</p><a href="catalog.html" class="btn-primary" style="margin-top:14px">Jelajahi Katalog</a></div>`
+            }
+        `;
+        } else if (tab === 'messages') {
+        el.innerHTML = `
+            <h2 class="dash-title">Pesan</h2>
+            <div class="msg-list">
+            ${[
+                {name:'Rizky A.',preview:'Masih tersedia! Harga bisa nego 😊',time:'10:32',seed:'Rizky',bg:'F1DABF',tc:'362417'},
+                {name:'Sari W.',preview:'Oke, saya deal. Bisa COD di kampus?',time:'Kemarin',seed:'Sari',bg:'92817A',tc:'FFFFFF'},
+                {name:'Budi P.',preview:'Terima kasih ya! Bukunya bagus sekali 👍',time:'Senin',seed:'Budi',bg:'362417',tc:'FFFFFF'},
+            ].map(m=>`
+                <div class="msg-row">
+                <img src="https://api.dicebear.com/7.x/initials/svg?seed=${m.seed}&backgroundColor=${m.bg}&textColor=${m.tc}" alt="${m.name}"/>
+                <div class="msg-info"><strong>${m.name}</strong><span>${m.preview}</span></div>
+                <span class="msg-time">${m.time}</span>
+                </div>
+            `).join('')}
+            </div>
+        `;
+        } else if (tab === 'profile') {
+        el.innerHTML = `
+            <h2 class="dash-title">Profil Saya</h2>
+            <div style="max-width:560px">
+            <div class="profile-avatar-row">
+                <img src="${u.avatar}" id="profImg" alt="${u.name}"/>
+                <button class="btn-outline" onclick="showToast('Fitur upload foto segera hadir!')">Ganti Foto</button>
+            </div>
+            <div class="form-card">
+                <div class="fg"><label>Nama Lengkap</label><input type="text" id="pName" value="${u.name}"/></div>
+                <div class="fg"><label>Email</label><input type="email" value="${u.email}" readonly style="background:var(--almond-lt)"/></div>
+                <div class="fg"><label>Kampus</label><input type="text" id="pCampus" value="${u.campus||''}"/></div>
+                <div class="fg"><label>Program Studi</label><input type="text" id="pProdi" value="${u.prodi||''}"/></div>
+                <div class="fg"><label>WhatsApp</label><input type="text" id="pWA" value="${u.wa||''}" placeholder="Nomor WhatsApp untuk dihubungi"/></div>
+                <button class="btn-primary" onclick="saveProfile()"><i class="fa fa-save"></i> Simpan</button>
+            </div>
+            </div>
+        `;
+        }
+    }
+
+    function saveProfile() {
+        const u = getUser();
+        u.name   = document.getElementById('pName').value.trim() || u.name;
+        u.campus = document.getElementById('pCampus').value.trim();
+        u.prodi  = document.getElementById('pProdi').value.trim();
+        u.wa     = document.getElementById('pWA').value.trim();
+        u.avatar = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(u.name)}&backgroundColor=362417&textColor=ffffff`;
+        setUser(u);
+        document.getElementById('profImg').src = u.avatar;
+        document.getElementById('dashProfile').innerHTML = `<img src="${u.avatar}" alt="${u.name}"/><div><h4>${u.name}</h4><p>${u.email}</p></div>`;
+        renderNavRight();
+        showToast('✅ Profil berhasil diperbarui!');
+    }
+    </script>
+    </body>
+    </html>

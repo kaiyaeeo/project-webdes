@@ -1,0 +1,267 @@
+    <!DOCTYPE html>
+    <html lang="id">
+    <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Detail Buku — BookCircle</title>
+    <link rel="stylesheet" href="../css/global.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <style>
+        .detail-wrap{max-width:1100px;margin:0 auto;padding:calc(var(--nav-h)+36px) 24px 60px}
+        .breadcrumb{font-size:.82rem;color:var(--taupe);margin-bottom:24px;display:flex;gap:6px;align-items:center}
+        .breadcrumb a{color:var(--coffee)}.breadcrumb a:hover{text-decoration:underline}
+        .detail-grid{display:grid;grid-template-columns:400px 1fr;gap:48px;align-items:start}
+        .detail-visual{
+        background:var(--almond-lt);border-radius:var(--r-xl);
+        padding:40px;display:flex;flex-direction:column;align-items:center;gap:20px;
+        position:sticky;top:calc(var(--nav-h)+20px);
+        }
+        .big-cover{
+        width:190px;height:256px;border-radius:5px 16px 16px 5px;
+        display:flex;align-items:center;justify-content:center;
+        padding:18px;box-shadow:var(--sh-xl);
+        }
+        .big-cover span{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;text-align:center;line-height:1.35}
+        .cover-actions{display:flex;gap:10px;width:100%}
+        .cover-actions button{flex:1}
+        .detail-info{display:flex;flex-direction:column;gap:18px}
+        .di-cat{font-size:.78rem;font-weight:700;color:var(--coffee);text-transform:uppercase;letter-spacing:.08em}
+        .di-title{font-size:1.9rem;font-weight:900;color:var(--black);line-height:1.15}
+        .di-author{font-size:.92rem;color:var(--taupe)}
+        .di-tags{display:flex;flex-wrap:wrap;gap:8px}
+        .tag{
+        padding:5px 12px;border-radius:6px;font-size:.76rem;font-weight:600;
+        background:var(--almond-lt);color:var(--coffee);border:1px solid var(--border);
+        }
+        .di-price-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+        .di-price{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--coffee)}
+        .di-type{padding:6px 13px;border-radius:7px;font-size:.78rem;font-weight:700}
+        .di-seller{
+        display:flex;align-items:center;gap:14px;
+        padding:16px;background:var(--almond-lt);border-radius:var(--r);border:1.5px solid var(--border);
+        }
+        .di-seller img{width:44px;height:44px;border-radius:50%}
+        .di-seller-info strong{display:block;font-size:.92rem}
+        .di-seller-info span{font-size:.78rem;color:var(--taupe)}
+        .di-desc{font-size:.9rem;color:var(--text2);line-height:1.72;padding:16px;background:var(--almond-lt);border-radius:var(--r)}
+        .di-actions{display:flex;gap:10px;flex-wrap:wrap}
+        .di-actions>*{flex:1;min-width:140px}
+        .section-divider{height:1px;background:var(--border);margin:8px 0}
+
+        /* Chat panel */
+        .chat-panel{
+        margin-top:32px;background:var(--snow);
+        border:1.5px solid var(--border);border-radius:var(--r-lg);overflow:hidden;
+        }
+        .chat-head{
+        display:flex;align-items:center;gap:12px;
+        padding:16px 18px;background:var(--coffee);
+        }
+        .chat-head img{width:38px;height:38px;border-radius:50%;border:2px solid var(--almond-md)}
+        .chat-head div h4{font-size:.9rem;color:var(--snow);font-family:'DM Sans',sans-serif}
+        .chat-head div span{font-size:.75rem;color:var(--almond)}
+        .chat-msgs{height:280px;overflow-y:auto;padding:14px;background:var(--almond-lt);display:flex;flex-direction:column;gap:10px}
+        .msg{max-width:72%;padding:9px 13px;border-radius:12px;font-size:.86rem;line-height:1.5}
+        .msg.sent{background:var(--coffee);color:var(--snow);align-self:flex-end;border-bottom-right-radius:3px}
+        .msg.recv{background:var(--snow);color:var(--text1);align-self:flex-start;border-bottom-left-radius:3px;border:1px solid var(--border)}
+        .chat-inp{display:flex;gap:8px;padding:12px 14px;border-top:1.5px solid var(--border)}
+        .chat-inp input{flex:1;padding:9px 13px;border:1.5px solid var(--border);border-radius:100px;outline:none;font-size:.88rem}
+        .chat-inp input:focus{border-color:var(--coffee)}
+        .chat-inp button{width:38px;height:38px;border-radius:50%;background:var(--coffee);color:var(--snow);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--ease)}
+        .chat-inp button:hover{background:var(--coffee-lt)}
+
+        /* Related */
+        .related{margin-top:48px}
+        .related h3{font-size:1.4rem;margin-bottom:20px}
+
+        @media(max-width:860px){
+        .detail-grid{grid-template-columns:1fr}
+        .detail-visual{position:static}
+        .di-title{font-size:1.5rem}
+        }
+    </style>
+    </head>
+    <body>
+    <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+        <a class="nav-logo" href="../index.html"><span class="logo-star">✦</span>BookCircle</a>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html">Beranda</a></li>
+        <li><a href="catalog.html" class="active">Katalog</a></li>
+        <li><a href="wishlist.html">Wishlist</a></li>
+        <li><a href="about.html">Tentang</a></li>
+        </ul>
+        <div class="nav-right" id="navRight"></div>
+    </div>
+    </nav>
+
+    <div class="detail-wrap" id="detailWrap">
+    <p style="color:var(--taupe)">Memuat detail buku...</p>
+    </div>
+
+    <footer class="footer">
+    <div class="foot-grid">
+        <div class="foot-brand"><div class="nav-logo"><span class="logo-star">✦</span>BookCircle</div><p>Platform sirkulasi buku kampus.</p></div>
+        <div class="foot-col"><h4>Platform</h4><a href="catalog.html">Katalog</a><a href="sell.html">Jual Buku</a></div>
+        <div class="foot-col"><h4>Dukungan</h4><a href="#">FAQ</a></div>
+        <div class="foot-col"><h4>Legal</h4><a href="#">Syarat & Ketentuan</a></div>
+    </div>
+    <div class="foot-bottom"><p>© 2025 BookCircle.</p></div>
+    </footer>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/main.js"></script>
+    <script>
+    let chatHistory = [];
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const p = new URLSearchParams(window.location.search);
+        const id = parseInt(p.get('id'));
+        const openChat = p.get('chat') === '1';
+        const all = getBooksFromStorage();
+        const book = all.find(b => b.id === id);
+
+        if (!book) {
+        document.getElementById('detailWrap').innerHTML = `<div class="empty"><i class="fa fa-book"></i><p>Buku tidak ditemukan.</p><a href="catalog.html" class="btn-primary" style="margin-top:16px">Kembali ke Katalog</a></div>`;
+        return;
+        }
+
+        const wish = getWishlist();
+        const inWish = wish.some(w => w.id === id);
+        const condC = book.condition==='Seperti Baru'?'c-baru':book.condition==='Cukup Baik'?'c-baik':book.condition==='Ada Coretan'?'c-coretan':'c-fotokopi';
+        const typeC = book.type==='Dijual'?'type-dijual':book.type==='Ditukar'?'type-ditukar':'type-donasi';
+
+        document.title = `${book.title} — BookCircle`;
+
+        document.getElementById('detailWrap').innerHTML = `
+        <div class="breadcrumb">
+            <a href="../index.html">Beranda</a> <i class="fa fa-chevron-right" style="font-size:.7rem"></i>
+            <a href="catalog.html">Katalog</a> <i class="fa fa-chevron-right" style="font-size:.7rem"></i>
+            <a href="catalog.html?cat=${encodeURIComponent(book.category)}">${book.category}</a> <i class="fa fa-chevron-right" style="font-size:.7rem"></i>
+            <span style="color:var(--text2)">${book.title}</span>
+        </div>
+        <div class="detail-grid">
+            <div class="detail-visual">
+            <div class="big-cover" style="background:${book.color}">
+                <span style="color:${book.tc}">${book.title}</span>
+            </div>
+            <div class="cover-actions">
+                <button class="btn-primary" onclick="addCart(event,${book.id})"><i class="fa fa-shopping-bag"></i> Keranjang</button>
+                <button class="btn-ico" onclick="handleWish(${book.id})" id="wishBtn" title="${inWish?'Hapus wishlist':'Simpan'}" style="width:44px;height:44px">
+                <span id="wishIcon">${inWish?'❤️':'🤍'}</span>
+                </button>
+            </div>
+            <button class="btn-outline w-full" onclick="showChatPanel()"><i class="fa fa-comments"></i> Chat Penjual</button>
+            </div>
+
+            <div class="detail-info">
+            <div class="di-cat">${book.category}</div>
+            <div class="di-title">${book.title}</div>
+            <div class="di-author">oleh ${book.author}</div>
+            <div class="di-tags">
+                <span class="tag cond ${condC}">${book.condition}</span>
+                <span class="tag"><i class="fa fa-map-marker-alt"></i> ${book.location}</span>
+                ${book.course ? `<span class="tag">📖 ${book.course}</span>` : ''}
+                ${book.lecturer ? `<span class="tag">👨‍🏫 ${book.lecturer}</span>` : ''}
+            </div>
+            <div class="section-divider"></div>
+            <div class="di-price-row">
+                <div class="di-price">
+                ${book.type==='Dijual'?'Rp '+book.price.toLocaleString('id-ID'):book.type==='Ditukar'?'🔄 Tukar':'🎁 Gratis'}
+                </div>
+                <span class="di-type ${typeC}">${book.type}</span>
+            </div>
+            <div class="section-divider"></div>
+            <div class="di-seller">
+                <img src="https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(book.seller)}&backgroundColor=362417&textColor=ffffff" alt="${book.seller}"/>
+                <div class="di-seller-info">
+                <strong>${book.seller}</strong>
+                <span>⭐ 4.8 · ${book.location}</span>
+                </div>
+            </div>
+            <div class="di-desc">${book.desc}</div>
+            <div class="di-actions">
+                <button class="btn-primary lg" onclick="addCart(event,${book.id})"><i class="fa fa-shopping-bag"></i> Tambah Keranjang</button>
+                <button class="btn-outline lg" onclick="showChatPanel()"><i class="fa fa-comments"></i> Chat Penjual</button>
+            </div>
+
+            <!-- CHAT PANEL -->
+            <div class="chat-panel" id="chatPanel" style="display:none">
+                <div class="chat-head">
+                <img src="https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(book.seller)}&backgroundColor=362417&textColor=ffffff"/>
+                <div><h4>${book.seller}</h4><span>Tentang: ${book.title}</span></div>
+                </div>
+                <div class="chat-msgs" id="chatMsgs"></div>
+                <div class="chat-inp">
+                <input type="text" id="chatIn" placeholder="Ketik pesan..." onkeypress="if(event.key==='Enter')sendMsg()"/>
+                <button onclick="sendMsg()"><i class="fa fa-paper-plane"></i></button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- RELATED -->
+        <div class="related">
+            <h3>Buku Serupa</h3>
+            <div class="book-grid" id="relatedGrid"></div>
+        </div>
+        `;
+
+        // Related books
+        const related = getBooksFromStorage().filter(b => b.id !== id && b.category === book.category).slice(0,4);
+        document.getElementById('relatedGrid').innerHTML = related.map(bookCardHTML).join('');
+
+        if (openChat) { showChatPanel(); window.scrollTo({top:500,behavior:'smooth'}); }
+    });
+
+    function handleWish(id) {
+        if (!getUser()) { window.location.href = 'login.html?redirect=catalog'; return; }
+        const all = getBooksFromStorage();
+        const book = all.find(b => b.id === id);
+        if (!book) return;
+        let w = getWishlist();
+        const idx = w.findIndex(x => x.id === id);
+        if (idx > -1) { w.splice(idx,1); showToast('💔 Dihapus dari wishlist.'); }
+        else { w.push(book); showToast('❤️ Disimpan ke wishlist!'); }
+        setWishlist(w);
+        const inW = w.some(x => x.id === id);
+        document.getElementById('wishIcon').textContent = inW ? '❤️' : '🤍';
+        renderNavRight();
+    }
+
+    function showChatPanel() {
+        if (!getUser()) { window.location.href = 'login.html?redirect=catalog'; return; }
+        const panel = document.getElementById('chatPanel');
+        panel.style.display = 'block';
+        panel.scrollIntoView({behavior:'smooth',block:'start'});
+        if (chatHistory.length === 0) {
+        const p = new URLSearchParams(window.location.search);
+        const id = parseInt(p.get('id'));
+        const book = getBooksFromStorage().find(b=>b.id===id);
+        appendMsg(`Halo kak, apakah "${book?.title}" masih tersedia?`, true);
+        setTimeout(() => appendMsg('Halo! Masih tersedia kok 😊 Ada yang ingin ditanyakan?', false), 900);
+        }
+    }
+
+    function appendMsg(text, sent) {
+        chatHistory.push({text, sent});
+        const el = document.getElementById('chatMsgs');
+        if (!el) return;
+        el.innerHTML = chatHistory.map(m=>`<div class="msg ${m.sent?'sent':'recv'}">${m.text}</div>`).join('');
+        el.scrollTop = el.scrollHeight;
+    }
+
+    function sendMsg() {
+        const inp = document.getElementById('chatIn');
+        if (!inp.value.trim()) return;
+        appendMsg(inp.value.trim(), true);
+        inp.value = '';
+        const replies = ['Masih tersedia! Harga bisa nego sedikit 😊','Boleh, bisa COD di kampus ya.','Kondisinya masih bagus kok!','Oke, kita deal ya!'];
+        setTimeout(() => appendMsg(replies[Math.floor(Math.random()*replies.length)], false), 1000);
+    }
+    </script>
+    </body>
+    </html>

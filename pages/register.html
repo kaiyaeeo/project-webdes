@@ -1,0 +1,229 @@
+    <!DOCTYPE html>
+    <html lang="id">
+    <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Daftar — BookCircle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="../css/main.css"/>
+    <link rel="stylesheet" href="../css/components.css"/>
+    <link rel="stylesheet" href="../css/pages.css"/>
+    <style>
+        .strength-bar { height: 4px; border-radius: 2px; background: var(--border-mid); margin-top: 6px; overflow: hidden; }
+        .strength-fill { height: 100%; border-radius: 2px; transition: all 0.3s; }
+        .strength-text { font-size: 0.75rem; margin-top: 4px; font-weight: 600; }
+    </style>
+    </head>
+    <body>
+    <div class="toast" id="toast"></div>
+
+    <div class="auth-layout">
+
+    <!-- LEFT SIDE -->
+    <div class="auth-side">
+        <div class="auth-side-bg">
+        <div class="auth-side-blob asb1"></div>
+        <div class="auth-side-blob asb2"></div>
+        </div>
+        <div class="auth-side-content anim-fadeUp">
+        <a href="../index.html" class="nav-logo" style="text-decoration:none">
+            <span class="logo-star">✦</span> BookCircle
+        </a>
+        <h2>Bergabung Bersama Kami!</h2>
+        <p>Daftar gratis dan mulai temukan buku kuliah murah, atau jual buku bekasmu ke sesama mahasiswa di seluruh Indonesia.</p>
+        <div class="auth-side-stats">
+            <div class="auth-stat">
+            <div class="auth-stat-icon">💰</div>
+            <div class="auth-stat-text">
+                <strong>Hemat 50–80%</strong>
+                <span>Dibanding harga toko baru</span>
+            </div>
+            </div>
+            <div class="auth-stat">
+            <div class="auth-stat-icon">🎁</div>
+            <div class="auth-stat-text">
+                <strong>Gratis Selamanya</strong>
+                <span>Tidak ada biaya berlangganan</span>
+            </div>
+            </div>
+            <div class="auth-stat">
+            <div class="auth-stat-icon">🌿</div>
+            <div class="auth-stat-text">
+                <strong>Ramah Lingkungan</strong>
+                <span>Kurangi sampah buku bekas</span>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="auth-form-side">
+        <div class="auth-form-box anim-fadeUp">
+
+        <a href="../index.html" class="auth-back">
+            <i class="fa fa-arrow-left"></i> Kembali ke Beranda
+        </a>
+
+        <h1>Buat Akun</h1>
+        <p class="sub-text">Sudah punya akun? <a href="login.html" style="color:var(--coffee);font-weight:700">Masuk di sini →</a></p>
+
+        <div class="form-row">
+            <div class="form-group">
+            <label class="form-label">Nama Depan *</label>
+            <input type="text" id="regFirstName" class="form-control" placeholder="Nama depan"/>
+            </div>
+            <div class="form-group">
+            <label class="form-label">Nama Belakang</label>
+            <input type="text" id="regLastName" class="form-control" placeholder="Nama belakang"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Email *</label>
+            <div class="input-icon-wrap">
+            <i class="fa fa-envelope input-icon"></i>
+            <input type="email" id="regEmail" class="form-control" placeholder="email@kampus.ac.id" autocomplete="email"/>
+            </div>
+            <p class="form-hint">Gunakan email kampus untuk kepercayaan lebih tinggi.</p>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Universitas / Kampus *</label>
+            <div class="input-icon-wrap">
+            <i class="fa fa-university input-icon"></i>
+            <input type="text" id="regCampus" class="form-control" placeholder="Cth: UNSOED Purwokerto"/>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+            <label class="form-label">Jurusan</label>
+            <input type="text" id="regMajor" class="form-control" placeholder="Cth: Teknik Informatika"/>
+            </div>
+            <div class="form-group">
+            <label class="form-label">Angkatan</label>
+            <select id="regYear" class="form-control">
+                <option value="">Pilih tahun</option>
+                <option>2025</option><option>2024</option><option>2023</option>
+                <option>2022</option><option>2021</option><option>2020</option>
+            </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Password *</label>
+            <div class="input-icon-wrap" style="position:relative">
+            <i class="fa fa-lock input-icon"></i>
+            <input type="password" id="regPass" class="form-control"
+                placeholder="Min. 8 karakter" style="padding-right:42px"
+                oninput="checkStrength(this.value)"/>
+            <button class="pass-reveal" onclick="togglePass('regPass',this)" type="button">
+                <i class="fa fa-eye"></i>
+            </button>
+            </div>
+            <div class="strength-bar"><div class="strength-fill" id="strengthFill" style="width:0;background:transparent"></div></div>
+            <p class="strength-text" id="strengthText" style="color:var(--taupe)"></p>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Konfirmasi Password *</label>
+            <div class="input-icon-wrap" style="position:relative">
+            <i class="fa fa-lock input-icon"></i>
+            <input type="password" id="regPassConfirm" class="form-control"
+                placeholder="Ulangi password" style="padding-right:42px"
+                onkeydown="if(event.key==='Enter')doRegister()"/>
+            <button class="pass-reveal" onclick="togglePass('regPassConfirm',this)" type="button">
+                <i class="fa fa-eye"></i>
+            </button>
+            </div>
+        </div>
+
+        <label style="display:flex;align-items:flex-start;gap:10px;font-size:0.84rem;color:var(--text-secondary);cursor:pointer;margin-bottom:20px;line-height:1.5">
+            <input type="checkbox" id="agreeTerms" style="accent-color:var(--coffee);width:15px;height:15px;margin-top:2px;flex-shrink:0"/>
+            Saya menyetujui <a href="#" style="color:var(--coffee);font-weight:600">&nbsp;Syarat & Ketentuan</a>&nbsp;dan&nbsp;<a href="#" style="color:var(--coffee);font-weight:600">Kebijakan Privasi</a>&nbsp;BookCircle.
+        </label>
+
+        <button class="btn-primary full lg" onclick="doRegister()">
+            <i class="fa fa-user-plus"></i> Buat Akun Gratis
+        </button>
+
+        <div class="auth-divider">atau daftar dengan</div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <button class="btn-outline sm" onclick="showToast('🚧 Fitur segera hadir!')" style="padding:10px">
+            <i class="fab fa-google" style="color:#EA4335"></i> Google
+            </button>
+            <button class="btn-outline sm" onclick="showToast('🚧 Fitur segera hadir!')" style="padding:10px">
+            <i class="fab fa-facebook" style="color:#1877F2"></i> Facebook
+            </button>
+        </div>
+
+        <p class="auth-switch" style="margin-top:20px">Sudah punya akun? <a href="login.html">Masuk di sini</a></p>
+
+        </div>
+    </div>
+    </div>
+
+    <script src="../js/data.js"></script>
+    <script>
+    if (isLoggedIn()) window.location.href = 'dashboard.html';
+
+    function togglePass(id, btn) {
+        const inp = document.getElementById(id);
+        inp.type = inp.type === 'password' ? 'text' : 'password';
+        btn.querySelector('i').className = inp.type === 'password' ? 'fa fa-eye' : 'fa fa-eye-slash';
+    }
+
+    function checkStrength(val) {
+        const fill = document.getElementById('strengthFill');
+        const text = document.getElementById('strengthText');
+        let score = 0;
+        if (val.length >= 8) score++;
+        if (/[A-Z]/.test(val)) score++;
+        if (/[0-9]/.test(val)) score++;
+        if (/[^A-Za-z0-9]/.test(val)) score++;
+        const levels = [
+        { pct:'0%', color:'transparent', label:'' },
+        { pct:'25%', color:'#e74c3c', label:'Lemah' },
+        { pct:'50%', color:'#f39c12', label:'Cukup' },
+        { pct:'75%', color:'#2ecc71', label:'Kuat' },
+        { pct:'100%', color:'#27ae60', label:'Sangat Kuat' },
+        ];
+        fill.style.width = levels[score].pct;
+        fill.style.background = levels[score].color;
+        text.textContent = levels[score].label;
+        text.style.color = levels[score].color;
+    }
+
+    function doRegister() {
+        const first  = document.getElementById('regFirstName').value.trim();
+        const last   = document.getElementById('regLastName').value.trim();
+        const email  = document.getElementById('regEmail').value.trim();
+        const campus = document.getElementById('regCampus').value.trim();
+        const pass   = document.getElementById('regPass').value;
+        const conf   = document.getElementById('regPassConfirm').value;
+        const agree  = document.getElementById('agreeTerms').checked;
+
+        if (!first)          { showToast('⚠️ Nama depan harus diisi'); return; }
+        if (!email.includes('@')) { showToast('⚠️ Format email tidak valid'); return; }
+        if (!campus)         { showToast('⚠️ Isi nama kampus kamu'); return; }
+        if (pass.length < 8) { showToast('⚠️ Password minimal 8 karakter'); return; }
+        if (pass !== conf)   { showToast('⚠️ Konfirmasi password tidak cocok'); return; }
+        if (!agree)          { showToast('⚠️ Setujui syarat & ketentuan terlebih dahulu'); return; }
+
+        AppState.user = {
+        name: (first + ' ' + last).trim(),
+        email, campus,
+        major: document.getElementById('regMajor').value,
+        year:  document.getElementById('regYear').value,
+        };
+        localStorage.setItem('bc_user', JSON.stringify(AppState.user));
+        showToast(`🎉 Akun berhasil dibuat! Selamat datang, ${first}!`);
+        setTimeout(() => window.location.href = 'dashboard.html', 900);
+    }
+    </script>
+    </body>
+    </html>
