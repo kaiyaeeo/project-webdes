@@ -35,21 +35,21 @@
         <p>Daftar gratis dan mulai temukan buku kuliah murah, atau jual buku bekasmu ke sesama mahasiswa di seluruh Indonesia.</p>
         <div class="auth-side-stats">
             <div class="auth-stat">
-            <div class="auth-stat-icon">💰</div>
+            <div class="auth-stat-icon"><i class="fa-solid fa-piggy-bank"></i></div>
             <div class="auth-stat-text">
                 <strong>Hemat 50–80%</strong>
                 <span>Dibanding harga toko baru</span>
             </div>
             </div>
             <div class="auth-stat">
-            <div class="auth-stat-icon">🎁</div>
+            <div class="auth-stat-icon"><i class="fa-solid fa-gift"></i></div>
             <div class="auth-stat-text">
                 <strong>Gratis Selamanya</strong>
                 <span>Tidak ada biaya berlangganan</span>
             </div>
             </div>
             <div class="auth-stat">
-            <div class="auth-stat-icon">🌿</div>
+            <div class="auth-stat-icon"><i class="fa-solid fa-leaf"></i></div>
             <div class="auth-stat-text">
                 <strong>Ramah Lingkungan</strong>
                 <span>Kurangi sampah buku bekas</span>
@@ -153,10 +153,10 @@
         <div class="auth-divider">atau daftar dengan</div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-            <button class="btn-outline sm" onclick="showToast('🚧 Fitur segera hadir!')" style="padding:10px">
+            <button class="btn-outline sm" onclick="showToast('<i class=\'fa-solid fa-hammer\'></i> Fitur segera hadir!')" style="padding:10px">
             <i class="fab fa-google" style="color:#EA4335"></i> Google
             </button>
-            <button class="btn-outline sm" onclick="showToast('🚧 Fitur segera hadir!')" style="padding:10px">
+            <button class="btn-outline sm" onclick="showToast('<i class=\'fa-solid fa-hammer\'></i> Fitur segera hadir!')" style="padding:10px">
             <i class="fab fa-facebook" style="color:#1877F2"></i> Facebook
             </button>
         </div>
@@ -207,12 +207,12 @@
         const conf   = document.getElementById('regPassConfirm').value;
         const agree  = document.getElementById('agreeTerms').checked;
 
-        if (!first)          { showToast('⚠️ Nama depan harus diisi'); return; }
-        if (!email.includes('@')) { showToast('⚠️ Format email tidak valid'); return; }
-        if (!campus)         { showToast('⚠️ Isi nama kampus kamu'); return; }
-        if (pass.length < 8) { showToast('⚠️ Password minimal 8 karakter'); return; }
-        if (pass !== conf)   { showToast('⚠️ Konfirmasi password tidak cocok'); return; }
-        if (!agree)          { showToast('⚠️ Setujui syarat & ketentuan terlebih dahulu'); return; }
+        if (!first)          { showToast('<i class="fa-solid fa-triangle-exclamation"></i> Nama depan harus diisi'); return; }
+        if (!email.includes('@')) { showToast('<i class="fa-solid fa-triangle-exclamation"></i> Format email tidak valid'); return; }
+        if (!campus)         { showToast('<i class="fa-solid fa-triangle-exclamation"></i> Isi nama kampus kamu'); return; }
+        if (pass.length < 8) { showToast('<i class="fa-solid fa-triangle-exclamation"></i> Password minimal 8 karakter'); return; }
+        if (pass !== conf)   { showToast('<i class="fa-solid fa-triangle-exclamation"></i> Konfirmasi password tidak cocok'); return; }
+        if (!agree)          { showToast('<i class="fa-solid fa-triangle-exclamation"></i> Setujui syarat & ketentuan terlebih dahulu'); return; }
 
         AppState.user = {
         name: (first + ' ' + last).trim(),
@@ -221,7 +221,7 @@
         year:  document.getElementById('regYear').value,
         };
         localStorage.setItem('bc_user', JSON.stringify(AppState.user));
-        showToast(`🎉 Akun berhasil dibuat! Selamat datang, ${first}!`);
+        showToast(`<i class="fa-solid fa-circle-check" style="color:#1B6B3A"></i> Akun berhasil dibuat! Selamat datang, ${first}!`);
         setTimeout(() => window.location.href = 'dashboard.html', 900);
     }
 
