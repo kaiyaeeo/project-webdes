@@ -63,7 +63,7 @@
     if (!book) {
     document.getElementById('detailWrapper').innerHTML = `
         <div style="text-align:center;padding:80px 24px;color:var(--taupe)">
-        <span style="font-size:4rem;display:block;margin-bottom:16px">📭</span>
+        <i class="fa-solid fa-box-open" style="font-size:4rem;display:block;margin-bottom:16px;color:var(--taupe)"></i>
         <h2 style="margin-bottom:10px">Buku tidak ditemukan</h2>
         <p style="margin-bottom:24px">Listing mungkin sudah dihapus atau link tidak valid.</p>
         <a href="catalog.html" class="btn-primary">Kembali ke Katalog</a>
@@ -80,9 +80,9 @@
 
     /* Price display */
     let priceHTML, actionLabel;
-    if (b.type === 'Donasi')  { priceHTML = '<span class="detail-price free">🎁 Gratis / Donasi</span>';  actionLabel = 'Ambil Gratis'; }
-    else if (b.type === 'Ditukar') { priceHTML = '<span class="detail-price swap">🔄 Ditukar</span>'; actionLabel = 'Ajukan Tukar'; }
-    else                      { priceHTML = `<span class="detail-price">Rp ${b.price.toLocaleString('id-ID')}</span>`; actionLabel = 'Tambah Keranjang'; }
+    if (b.type === 'Donasi')  { priceHTML = '<span class="detail-price free"><i class="fa-solid fa-gift"></i> Gratis / Donasi</span>';  actionLabel = 'Ambil Gratis'; }
+    else if (b.type === 'Ditukar') { priceHTML = '<span class="detail-price swap"><i class="fa-solid fa-arrows-rotate"></i> Ditukar</span>'; actionLabel = 'Ajukan Tukar'; }
+    else                      { priceHTML = `<span class="detail-price"><i class="fa-solid fa-tag"></i> Rp ${b.price.toLocaleString('id-ID')}</span>`; actionLabel = 'Tambah Keranjang'; }
     
     document.getElementById('detailWrapper').innerHTML = `
 
@@ -145,7 +145,7 @@
             <!-- Price -->
             <div class="detail-price-row">
             ${priceHTML}
-            ${b.type === 'Dijual' && b.price < 100000 ? `<span style="font-size:0.78rem;color:var(--taupe);background:var(--almond-light);padding:4px 10px;border-radius:6px;font-weight:600">💡 Bisa nego</span>` : ''}
+            ${b.type === 'Dijual' && b.price < 100000 ? `<span style="font-size:0.78rem;color:var(--taupe);background:var(--almond-light);padding:4px 10px;border-radius:6px;font-weight:600"><i class="fa-solid fa-lightbulb" style="color:#f1c40f"></i> Bisa nego</span>` : ''}
             </div>
 
             <!-- Seller card -->
@@ -176,7 +176,7 @@
             </button>
             <button class="btn-icon" id="wishBtn" style="width:48px;height:48px"
                 onclick="toggleWish(${b.id}, this)" title="${inWish?'Hapus dari Wishlist':'Tambah ke Wishlist'}">
-                ${inWish ? '❤️' : '🤍'}
+                ${inWish ? '<i class="fa-solid fa-heart" style="color:#e74c3c"></i>' : '<i class="fa-regular fa-heart"></i>'}
             </button>
             </div>
 
@@ -230,12 +230,12 @@
     /* ===== ACTIONS ===== */
     function addToCart(id) {
     if (!Auth.check()) { window.location.href = `login.html?redirect=${encodeURIComponent(window.location.href)}`; return; }
-    if (AppState.cart.some(c => c.id === id)) { showToast('📚 Sudah ada di keranjang!'); return; }
+    if (AppState.cart.some(c => c.id === id)) { showToast('<i class="fa-solid fa-book"></i> Sudah ada di keranjang!'); return; }
     const book = AppState.books.find(b => b.id === id);
     AppState.cart.push(book);
     AppState.save();
     updateBadges();
-    showToast('🛍️ Ditambahkan ke keranjang!');
+    showToast('<i class="fa-solid fa-basket-shopping"></i> Ditambahkan ke keranjang!');
     }
 
     function toggleWish(id, btn) {
@@ -267,7 +267,7 @@
     }
 
     function copyLink() {
-    navigator.clipboard.writeText(window.location.href).then(() => showToast('🔗 Link disalin!'));
+    navigator.clipboard.writeText(window.location.href).then(() => showToast('<i class="fa-solid fa-link"></i> Link disalin!'));
     }
     </script>
     </body>
