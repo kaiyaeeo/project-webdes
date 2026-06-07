@@ -96,7 +96,7 @@
         <!-- STEP 1: Info Buku -->
         <div class="form-step active" id="step1">
             <div class="panel" style="margin-bottom:20px">
-            <h3 style="margin-bottom:20px">📚 Informasi Buku</h3>
+            <h3 style="margin-bottom:20px"><i class="fa-solid fa-book"></i> Informasi Buku</h3>
 
             <div class="form-group">
                 <label class="form-label">Judul Buku *</label>
@@ -138,7 +138,7 @@
             <div class="form-group">
                 <label class="form-label">Nama Dosen Pengampu</label>
                 <input type="text" id="sLecturer" class="form-control" placeholder="Opsional – membantu pembeli menemukan buku"/>
-                <p class="form-hint">💡 Menambahkan nama dosen meningkatkan peluang buku ditemukan 3×</p>
+                <p class="form-hint"><i class="fa-solid fa-lightbulb" style="color:#f1c40f"></i> Menambahkan nama dosen meningkatkan peluang buku ditemukan 3×</p>
             </div>
 
             <div class="form-group">
@@ -162,24 +162,24 @@
         <!-- STEP 2: Kondisi & Harga -->
         <div class="form-step" id="step2">
             <div class="panel" style="margin-bottom:20px">
-            <h3 style="margin-bottom:20px">💰 Kondisi &amp; Harga</h3>
+            <h3 style="margin-bottom:20px"><i class="fa-solid fa-tags"></i> Kondisi & Harga</h3>
 
             <div class="form-group">
                 <label class="form-label">Kondisi Buku *</label>
                 <div class="radio-group">
-                <label class="radio-opt"><input type="radio" name="cond" value="Seperti Baru" onchange="updatePreview()"/> ✨ Seperti Baru</label>
-                <label class="radio-opt"><input type="radio" name="cond" value="Cukup Baik"  onchange="updatePreview()"/> 👍 Cukup Baik</label>
-                <label class="radio-opt"><input type="radio" name="cond" value="Ada Coretan"  onchange="updatePreview()"/> ✏️ Ada Coretan</label>
-                <label class="radio-opt"><input type="radio" name="cond" value="Fotokopi"     onchange="updatePreview()"/> 📄 Fotokopi</label>
+                <label class="radio-opt"><input type="radio" name="cond" value="Seperti Baru" onchange="updatePreview()"/> <i class="fa-solid fa-wand-magic-sparkles"></i> Seperti Baru</label>
+                <label class="radio-opt"><input type="radio" name="cond" value="Cukup Baik"  onchange="updatePreview()"/> <i class="fa-solid fa-thumbs-up"></i> Cukup Baik</label>
+                <label class="radio-opt"><input type="radio" name="cond" value="Ada Coretan"  onchange="updatePreview()"/> <i class="fa-solid fa-pencil"></i> Ada Coretan</label>
+                <label class="radio-opt"><input type="radio" name="cond" value="Fotokopi"     onchange="updatePreview()"/> <i class="fa-solid fa-file-lines"></i> Fotokopi</label>
                 </div>
             </div>
 
             <div class="form-group" style="margin-top:8px">
                 <label class="form-label">Jenis Listing *</label>
                 <div class="radio-group">
-                <label class="radio-opt"><input type="radio" name="type" value="Dijual"  onchange="onTypeChange()"/> 🏷️ Dijual</label>
-                <label class="radio-opt"><input type="radio" name="type" value="Ditukar" onchange="onTypeChange()"/> 🔄 Ditukar</label>
-                <label class="radio-opt"><input type="radio" name="type" value="Donasi"  onchange="onTypeChange()"/> 🎁 Donasi Gratis</label>
+                <label class="radio-opt"><input type="radio" name="type" value="Dijual"  onchange="onTypeChange()"/> <i class="fa-solid fa-tag"></i> Dijual</label>
+                <label class="radio-opt"><input type="radio" name="type" value="Ditukar" onchange="onTypeChange()"/> <i class="fa-solid fa-arrows-rotate"></i> Ditukar</label>
+                <label class="radio-opt"><input type="radio" name="type" value="Donasi"  onchange="onTypeChange()"/> <i class="fa-solid fa-gift"></i> Donasi Gratis</label>
                 </div>
             </div>
 
@@ -189,7 +189,7 @@
                 <i class="fa fa-tag input-icon"></i>
                 <input type="number" id="sPrice" class="form-control" placeholder="Cth: 75000" min="0" oninput="updatePreview()"/>
                 </div>
-                <p class="form-hint">💡 Harga buku bekas biasanya 50–70% dari harga toko baru</p>
+                <p class="form-hint"><i class="fa-solid fa-lightbulb" style="color:#f1c40f"></i> Harga buku bekas biasanya 50–70% dari harga toko baru</p>
             </div>
 
             <div class="form-group" id="swapGroup" style="display:none">
@@ -208,7 +208,7 @@
         <!-- STEP 3: Foto & Lokasi -->
         <div class="form-step" id="step3">
             <div class="panel" style="margin-bottom:20px">
-            <h3 style="margin-bottom:20px">📸 Foto Buku</h3>
+            <h3 style="margin-bottom:20px"><i class="fa-solid fa-camera-retro"></i> Foto Buku</h3>
             <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
                 <i class="fa fa-camera"></i>
                 <p>Klik atau seret foto buku ke sini</p>
@@ -216,11 +216,11 @@
                 <div class="upload-previews" id="uploadPreviews"></div>
             </div>
             <input type="file" id="fileInput" multiple accept="image/*" style="display:none" onchange="handleUpload(event)"/>
-            <p class="form-hint" style="margin-top:10px">💡 Foto yang jelas meningkatkan kepercayaan pembeli. Ambil dari berbagai sisi!</p>
+            <p class="form-hint" style="margin-top:10px"><i class="fa-solid fa-lightbulb" style="color:#f1c40f"></i> Foto yang jelas meningkatkan kepercayaan pembeli. Ambil dari berbagai sisi!</p>
             </div>
 
             <div class="panel" style="margin-bottom:20px">
-            <h3 style="margin-bottom:20px">📍 Lokasi &amp; Kontak</h3>
+            <h3 style="margin-bottom:20px"><i class="fa-solid fa-location-dot"></i> Lokasi &amp; Kontak</h3>
 
             <div class="form-group">
                 <label class="form-label">Kampus / Kota *</label>
@@ -260,7 +260,7 @@
         <!-- STEP 4: Preview & Publish -->
         <div class="form-step" id="step4">
             <div class="panel" style="margin-bottom:20px">
-            <h3 style="margin-bottom:20px">👁️ Preview Listing</h3>
+            <h3 style="margin-bottom:20px"><i class="fa-regular fa-eye"></i> Preview Listing</h3>
             <div id="previewFull"></div>
             </div>
 
@@ -291,17 +291,25 @@
 
         <!-- Tips -->
         <div class="panel">
-            <h4 style="font-size:0.88rem;font-weight:700;margin-bottom:14px">💡 Tips Cepat Laku</h4>
-            <ul style="display:flex;flex-direction:column;gap:10px">
-            ${[
-                'Tambahkan nama dosen agar mudah ditemukan',
-                'Foto buku dari depan, belakang, dan beberapa halaman isi',
-                'Tulis kondisi secara jujur untuk membangun kepercayaan',
-                'Harga wajar = 50–70% harga toko baru',
-                'Aktif balas chat agar pembeli tidak kabur',
-            ].map(t => `<li style="display:flex;gap:8px;font-size:0.83rem;color:var(--text-secondary)"><span style="color:var(--coffee);font-weight:700">✓</span>${t}</li>`).join('')}
-            </ul>
-        </div>
+    <h4 style="font-size:0.88rem;font-weight:700;margin-bottom:14px"><i class="fa-regular fa-lightbulb"></i> Tips Cepat Laku</h4>
+    <ul style="display:flex;flex-direction:column;gap:10px;list-style:none;padding:0;margin:0;">
+        <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--text-secondary)">
+            <span style="color:var(--coffee);font-weight:700"><i class="fa-solid fa-check"></i></span> Tambahkan nama dosen agar mudah ditemukan
+        </li>
+        <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--text-secondary)">
+            <span style="color:var(--coffee);font-weight:700"><i class="fa-solid fa-check"></i></span> Foto buku dari depan, belakang, dan beberapa halaman isi
+        </li>
+        <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--text-secondary)">
+            <span style="color:var(--coffee);font-weight:700"><i class="fa-solid fa-check"></i></span> Tulis kondisi secara jujur untuk membangun kepercayaan
+        </li>
+        <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--text-secondary)">
+            <span style="color:var(--coffee);font-weight:700"><i class="fa-solid fa-check"></i></span> Harga wajar = 50–70% harga toko baru
+        </li>
+        <li style="display:flex;gap:8px;font-size:0.83rem;color:var(--text-secondary)">
+            <span style="color:var(--coffee);font-weight:700"><i class="fa-solid fa-check"></i></span> Aktif balas chat agar pembeli tidak kabur
+        </li>
+    </ul>
+</div>
         </div>
 
     </div>
@@ -310,7 +318,7 @@
     <!-- SUCCESS OVERLAY -->
     <div class="success-overlay" id="successOverlay">
     <div class="success-card">
-        <div class="success-icon">🎉</div>
+        <div class="success-icon" style="color:#1B6B3A"><i class="fa-solid fa-circle-check"></i></div>
         <h2 style="margin-bottom:10px">Listing Dipublikasikan!</h2>
         <p style="color:var(--taupe);margin-bottom:28px">Bukumu sudah bisa ditemukan oleh pembeli. Pastikan kamu aktif membalas pesan!</p>
         <div style="display:flex;flex-direction:column;gap:10px">
@@ -344,20 +352,20 @@
         // Validate before moving forward
         if (n > currentStep) {
         if (currentStep === 1) {
-            if (!document.getElementById('sTitle').value.trim()) { showToast('⚠️ Judul buku wajib diisi'); return; }
-            if (!document.getElementById('sCategory').value)     { showToast('⚠️ Pilih kategori buku'); return; }
+            if (!document.getElementById('sTitle').value.trim()) { showToast('<i class="fa-solid fa-triangle-exclamation"></i> Judul buku wajib diisi'); return; }
+            if (!document.getElementById('sCategory').value)     { showToast('<i class="fa-solid fa-triangle-exclamation"></i> Pilih kategori buku'); return; }
         }
         if (currentStep === 2) {
             const cond = document.querySelector('input[name="cond"]:checked');
             const type = document.querySelector('input[name="type"]:checked');
-            if (!cond) { showToast('⚠️ Pilih kondisi buku'); return; }
-            if (!type) { showToast('⚠️ Pilih jenis listing'); return; }
+            if (!cond) { showToast('<i class="fa-solid fa-triangle-exclamation"></i> Pilih kondisi buku'); return; }
+            if (!type) { showToast('<i class="fa-solid fa-triangle-exclamation"></i> Pilih jenis listing'); return; }
             if (type.value === 'Dijual' && !document.getElementById('sPrice').value) {
-            showToast('⚠️ Isi harga jual buku'); return;
+            showToast('<i class="fa-solid fa-triangle-exclamation"></i> Isi harga jual buku'); return;
             }
         }
         if (currentStep === 3) {
-            if (!document.getElementById('sLocation').value.trim()) { showToast('⚠️ Isi lokasi / kampus'); return; }
+            if (!document.getElementById('sLocation').value.trim()) { showToast('<i class="fa-solid fa-triangle-exclamation"></i> Isi lokasi / kampus'); return; }
         }
         }
 
@@ -427,7 +435,7 @@
         const d = getFormData();
         const side = document.getElementById('sidePreview');
         if (!d.title) { side.innerHTML = '<p class="preview-placeholder">Mulai isi form untuk melihat preview</p>'; return; }
-        const priceTxt = d.type==='Donasi' ? '🎁 Gratis' : d.type==='Ditukar' ? '🔄 Tukar' : d.price ? `Rp ${d.price.toLocaleString('id-ID')}` : '—';
+        const priceTxt = d.type==='Donasi' ? '<i class="fa-solid fa-gift"></i> Gratis' : d.type==='Ditukar' ? '<i class="fa-solid fa-arrows-rotate"></i> Tukar' : d.price ? `Rp ${d.price.toLocaleString('id-ID')}` : '—';
         side.innerHTML = `
         <div style="display:flex;gap:12px;align-items:center">
             <div style="width:48px;height:64px;border-radius:3px 8px 8px 3px;background:${d.clr};display:flex;align-items:center;justify-content:center;padding:5px;flex-shrink:0;box-shadow:var(--shadow-md)">
@@ -456,10 +464,10 @@
             <div style="display:flex;gap:8px;flex-wrap:wrap">
                 ${d.condition ? `<span class="cond-pill ${condClass(d.condition)}">${d.condition}</span>` : ''}
                 ${d.course    ? `<span class="detail-tag">${d.course}</span>` : ''}
-                ${d.lecturer  ? `<span class="detail-tag">👨‍🏫 ${d.lecturer}</span>` : ''}
+                ${d.lecturer  ? `<span class="detail-tag"><i class="fa-solid fa-chalkboard-user"></i> ${d.lecturer}</span>` : ''}
             </div>
             <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--coffee)">
-                ${d.type==='Donasi'?'🎁 Gratis':d.type==='Ditukar'?'🔄 Tukar':d.price?`Rp ${d.price.toLocaleString('id-ID')}`:'—'}
+                ${d.type==='Donasi'?'<i class="fa-solid fa-gift"></i> Gratis':d.type==='Ditukar'?'<i class="fa-solid fa-arrows-rotate"></i> Tukar':d.price?`Rp ${d.price.toLocaleString('id-ID')}`:'—'}
             </div>
             <p style="font-size:0.85rem;color:var(--text-secondary);line-height:1.6">${d.desc}</p>
             <p style="font-size:0.8rem;color:var(--taupe)"><i class="fa fa-map-marker-alt"></i> ${d.location||'—'}</p>
@@ -470,7 +478,7 @@
     function publishListing() {
         const d = getFormData();
         if (!d.title || !d.category || !d.condition || !d.type || !d.location) {
-        showToast('⚠️ Lengkapi semua field wajib terlebih dahulu'); return;
+        showToast('<i class="fa-solid fa-triangle-exclamation"></i> Lengkapi semua field wajib terlebih dahulu'); return;
         }
 
         const newBook = {
