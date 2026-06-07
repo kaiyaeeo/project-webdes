@@ -326,7 +326,7 @@
 
     function doLogout() {
     AppState.logout();
-    showToast('👋 Berhasil keluar!');
+    showToast('<i class="fa-solid fa-arrow-right-from-bracket"></i> Berhasil keluar!');
     setTimeout(() => window.location.href = '../index.html', 900);
     }
 
