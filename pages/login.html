@@ -30,21 +30,21 @@
         <p>Masuk ke akunmu dan temukan ribuan buku teks berkualitas dengan harga terjangkau dari sesama mahasiswa.</p>
         <div class="auth-side-stats">
             <div class="auth-stat">
-            <div class="auth-stat-icon">📚</div>
+            <div class="auth-stat-icon"><i class="fa-solid fa-book"></i></div>
             <div class="auth-stat-text">
                 <strong>2.400+</strong>
                 <span>Buku Tersedia</span>
             </div>
             </div>
             <div class="auth-stat">
-            <div class="auth-stat-icon">👥</div>
+            <div class="auth-stat-icon"><i class="fa-solid fa-users"></i></div>
             <div class="auth-stat-text">
                 <strong>1.800+</strong>
                 <span>Mahasiswa Aktif</span>
             </div>
             </div>
             <div class="auth-stat">
-            <div class="auth-stat-icon">🎓</div>
+            <div class="auth-stat-icon"><i class="fa-solid fa-graduation-cap"></i></div>
             <div class="auth-stat-text">
                 <strong>340+</strong>
                 <span>Kampus Terdaftar</span>
@@ -102,10 +102,10 @@
         <div class="auth-divider">atau lanjutkan dengan</div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px">
-            <button class="btn-outline sm" onclick="showToast('🚧 Fitur segera hadir!')" style="padding:10px">
+            <button class="btn-outline sm" onclick="showToast('<i class=\'fa-solid fa-hammer\'></i> Fitur segera hadir!')" style="padding:10px">
             <i class="fab fa-google" style="color:#EA4335"></i> Google
             </button>
-            <button class="btn-outline sm" onclick="showToast('🚧 Fitur segera hadir!')" style="padding:10px">
+            <button class="btn-outline sm" onclick="showToast('<i class=\'fa-solid fa-hammer\'></i> Fitur segera hadir!')" style="padding:10px">
             <i class="fab fa-facebook" style="color:#1877F2"></i> Facebook
             </button>
         </div>
@@ -133,10 +133,9 @@
         const email = document.getElementById('loginEmail').value.trim();
         const pass  = document.getElementById('loginPass').value;
 
-        if (!email || !pass) { showToast('⚠️ Isi semua field terlebih dahulu'); return; }
-        if (!email.includes('@')) { showToast('⚠️ Format email tidak valid'); return; }
-        if (pass.length < 4)  { showToast('⚠️ Password terlalu pendek'); return; }
-
+        if (!email || !pass) { showToast('<i class="fa-solid fa-triangle-exclamation"></i> Isi semua field terlebih dahulu'); return; }
+        if (!email.includes('@')) { showToast('<i class="fa-solid fa-triangle-exclamation"></i> Format email tidak valid'); return; }
+        if (pass.length < 4)  { showToast('<i class="fa-solid fa-triangle-exclamation"></i> Password terlalu pendek'); return; }
         // Simulate login
         AppState.user = {
         name: email.split('@')[0].replace(/[._]/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
@@ -144,7 +143,7 @@
         campus: 'UNSOED Purwokerto',
         };
         localStorage.setItem('bc_user', JSON.stringify(AppState.user));
-        showToast('✅ Berhasil masuk!');
+        showToast('<i class="fa-solid fa-circle-check" style="color:#1B6B3A"></i> Berhasil masuk!');
 
         // Redirect: ke halaman sebelumnya atau dashboard
         const params = new URLSearchParams(window.location.search);
