@@ -84,8 +84,8 @@
     return { 'Dijual':'type-dijual','Ditukar':'type-ditukar','Donasi':'type-donasi' }[t] || 'type-dijual';
     }
     function priceDisplay(book, full=false) {
-    if (book.type === 'Donasi')  return full ? '<span class="book-price free">🎁 Gratis</span>' : '<span class="book-price free">Gratis!</span>';
-    if (book.type === 'Ditukar') return full ? '<span class="book-price swap">🔄 Tukar</span>' : '<span class="book-price swap">Tukar</span>';
+    if (book.type === 'Donasi')  return full ? '<span class="book-price free"><i class="fa-solid fa-gift"></i> Gratis</span>' : '<span class="book-price free">Gratis!</span>';
+    if (book.type === 'Ditukar') return full ? '<span class="book-price swap"><i class="fa-solid fa-arrows-rotate"></i> Tukar</span>' : '<span class="book-price swap">Tukar</span>';
     return `<span class="book-price">Rp ${book.price.toLocaleString('id-ID')}</span>`;
     }
     function avatarUrl(name, bg='362417', fg='ffffff') {
@@ -246,7 +246,7 @@
             <button class="card-wish-btn ${inWish?'in-wish':''}"
             onclick="handleWishToggle(event,${book.id},this)"
             title="${inWish?'Hapus Wishlist':'Simpan'}">
-            ${inWish?'❤️':'🤍'}
+            ${inWish ? '<i class="fa-solid fa-heart" style="color:#e74c3c"></i>' : '<i class="fa-regular fa-heart"></i>'}
             </button>
         </div>
         <div class="book-card-body">
@@ -275,12 +275,12 @@
     const idx  = AppState.wishlist.findIndex(w => w.id === id);
     if (idx > -1) {
         AppState.wishlist.splice(idx,1);
-        btn.textContent = '🤍'; btn.classList.remove('in-wish');
-        showToast('💔 Dihapus dari wishlist.');
+        btn.innerHTML = '<i class="fa-regular fa-heart"></i>'; btn.classList.remove('in-wish');
+        showToast('<i class="fa-solid fa-heart-crack"></i> Dihapus dari wishlist.');
     } else {
         AppState.wishlist.push(book);
-        btn.textContent = '❤️'; btn.classList.add('in-wish');
-        showToast('❤️ Disimpan ke wishlist!');
+        btn.innerHTML = '<i class="fa-solid fa-heart" style="color:#e74c3c"></i>'; btn.classList.add('in-wish');
+        showToast('<i class="fa-solid fa-heart" style="color:#e74c3c"></i> Disimpan ke wishlist!');
     }
     AppState.save();
     updateBadges();
@@ -290,11 +290,11 @@
     e.stopPropagation();
     if (!isLoggedIn()) { window.location.href = 'login.html?redirect='+encodeURIComponent(window.location.pathname); return; }
     const book = AppState.books.find(b => b.id === id);
-    if (AppState.cart.some(c => c.id === id)) { showToast('📚 Sudah ada di keranjang!'); return; }
+    if (AppState.cart.some(c => c.id === id)) { showToast('<i class="fa-solid fa-book"></i> Sudah ada di keranjang!'); return; }
     AppState.cart.push(book);
     AppState.save();
     updateBadges();
-    showToast(`🛍️ Ditambahkan ke keranjang!`);
+    showToast('<i class="fa-solid fa-basket-shopping"></i> Ditambahkan ke keranjang!');
     }
 
     function handleChat(e, id) {
